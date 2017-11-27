@@ -10,6 +10,7 @@
 namespace  app\helper ;
 
 use common\helpers\ProductHelper;
+use phpDocumentor\Reflection\Types\Integer;
 use Yii;
 use yii\base\Component ;
 use yii\web\NotFoundHttpException;
@@ -30,47 +31,82 @@ class productOrderFacade extends Component
             throw new NotFoundHttpException(Yii::t('app','This product not exsist .')) ;
     }
 
-    public function generateOrder()
+    /**
+     * @param Integer $countOfProduct
+     * @return bool|string
+     */
+    public function generateOrder($countOfProduct)
     {
 
-        if(!$this->qtyCheck())
-            return false ;
+        if(!$message = $this->qtyCheck())
+            return $message ;
 
         // Add Product to Cart
-        $this->addToCart();
+        $this->addToCart($countOfProduct);
+
+        return true ;
 
     }
 
-    private function addToCart()
+    private function addToCart($countOfProduct)
     {
+        $cookies = Yii::$app->request->cookies;
+        $cookieInfo = [] ;
+        if (isset($cookies['basket']))
+            $cookieInfo = json_decode($cookies['basket']->value , true) ;
+
+        $product = [
+            'productId' => $this->productId,
+            'productName' => $this->productModel->name,
+            'productPrice' => $this->productModel->price,
+            'productImage' => $this->productModel->image,
+            'productCount' => $countOfProduct,
+            'productModel' => $this->productModel->model ,
+            'productDiscount' => $this->applyDiscount()  ,
+        ] ;
+
+
+        $product = array_merge($product,$cookieInfo) ;
+
+        $cookies->add(new \yii\web\Cookie([
+            'name' => 'basket',
+            'value' => json_encode($product),
+        ]));
 
     }
 
-    private function qtyCheck() {
+    public function removeProductFromCart()
+    {
+        $cookies = Yii::$app->request->cookies;
+        $cookieInfo = [] ;
 
+        if (isset($cookies['basket']))
+        {
+            $cookieInfo = json_decode($cookies['language']->value , true) ;
+
+            $cookieInfo  = '';
+
+        }
+    }
+
+    private function qtyCheck()
+    {
         if($this->productModel->quantity <= 0)
-            return false;
+            return Yii::t('app' ,'This '.$this->productModel->name.' not exist');
 
         return true;
-
-
-
     }
 
 
-    private function calulateShipping() {
-        $shipping = new shippingCharge();
-        $shipping->calculateCharge();
+    public function applyDiscount() {
+
+        $discount = new Discount();
+
+        if($discountPrice = $discount->applyDiscount($this->productId))
+            return $discountPrice;
+
+        return 0 ;
     }
 
-    private function applyDiscount() {
-        $discount = new discount();
-        $discount->applyDiscount();
-    }
-
-    private function placeOrder() {
-        $order = new order();
-        $order->generateOrder();
-    }
 
 }
