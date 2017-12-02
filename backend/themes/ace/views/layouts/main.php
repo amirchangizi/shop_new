@@ -7,7 +7,7 @@ use backend\themes\ace\assets\adminAsset ;
 use backend\themes\ace\assets\AppAsset;
 use yii\helpers\Html;
 
-AppAsset::register($this);
+//AppAsset::register($this);
 $bundle = adminAsset::register($this);
 
 

@@ -8,5 +8,6 @@ use yii\helpers\Html;
 <div class="geo-zones-update">
     <?= $this->render('_form', [
         'model' => $model,
+        'ztgModel' => $ztgModel,
     ]) ?>
 </div>

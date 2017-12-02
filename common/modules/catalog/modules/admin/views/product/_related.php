@@ -1,4 +1,4 @@
-
+<p><?= Yii::t('app','Product Related') ?></p>
 <?php
 use common\helpers\CategoryHelper;
 use common\helpers\ProductHelper;
@@ -27,6 +27,9 @@ if(!$model->isNewRecord)
 ?>
 
     <?= $form->field($relatedModel, 'related_id')->dropDownList(ProductHelper::getProductByValue($productId), ['options' => $selected,'multiple' => true])->label(false) ?>
+
+    <p><?= Yii::t('app','Product Category') ?></p>
+
     <?= $form->field($categoryModel, 'category_id')->dropDownList(CategoryHelper::getAllCategoryIdWithoutRoot(), ['options' => $selectedCat,'multiple' => true])->label(false) ?>
 
 

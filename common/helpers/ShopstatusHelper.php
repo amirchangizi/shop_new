@@ -22,4 +22,14 @@ class ShopstatusHelper extends Component
         return ArrayHelper::map(ShopStatus::find()->where(['status_section'=>$section ,'language_id'=> $language ])->all() ,'status_id' ,'status_name') ;
     }
 
+    public static function getStatus($language = null)
+    {
+        if(is_null($language))
+            return ArrayHelper::map(ShopStatus::find()->where(['language_id'=> Yii::$app->language])->all() ,'status_id' ,'status_name') ;
+
+        return ArrayHelper::map(ShopStatus::find()->where(['language_id'=> $language ])->all() ,'status_id' ,'status_name') ;
+    }
+
+
+
 }

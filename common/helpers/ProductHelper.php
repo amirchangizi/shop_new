@@ -32,7 +32,8 @@ class ProductHelper extends Component
 
     public static function getProductByCategory($categoryId ,$limit = 4)
     {
-        $categoryIds  = ArrayHelper::map(ProductToCategory::find()->where(['category_id'=>$categoryId])->all() ,'category_id' ,'category_id') ;
+        $categoryIds  = ArrayHelper::map(ProductToCategory::find()->where(['category_id'=>$categoryId])->all() ,'product_id' ,'product_id') ;
+
         return Product::find()->where(['status'=>true,'language_id'=> Yii::$app->language])->andWhere(['IN','product_id',$categoryIds])->limit($limit)->orderBy(['product_id'=>SORT_DESC])->all() ;
     }
 

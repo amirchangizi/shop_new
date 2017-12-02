@@ -39,6 +39,20 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'view' => [
+            'theme' => [
+
+                'basePath' => '@app/themes/masa',
+                'baseUrl' => '@web/themes/masa',
+
+                'pathMap' => [
+                    '@app/views' => '@app/themes/masa/views/',
+//                    '@app/modules' => '@app/themes/masa/modules',
+//                    '@app/widgets' => '@app/themes/masa/widgets'
+                ]
+
+            ],
+        ],
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,

@@ -111,6 +111,9 @@ class GeozonesController extends Controller
 
         $ztgModel = $model->zonesToGeoZones;
 
+        if(count($ztgModel)<=0)
+            $ztgModel = [new ZonesToGeoZones ] ;
+
         if ($model->load(Yii::$app->request->post())) {
 
 
@@ -148,6 +151,7 @@ class GeozonesController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'ztgModel' => $ztgModel,
             ]);
         }
     }

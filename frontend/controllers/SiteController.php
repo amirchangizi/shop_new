@@ -1,8 +1,13 @@
 <?php
+
 namespace frontend\controllers;
 
+use common\helpers\CategoryHelper;
+use common\helpers\InformationHelper;
+use common\helpers\ProductHelper;
 use Yii;
 use yii\base\InvalidParamException;
+use yii\bootstrap\Html;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -18,6 +23,8 @@ use frontend\models\ContactForm;
  */
 class SiteController extends Controller
 {
+    public $layout = 'main';
+
     /**
      * @inheritdoc
      */
@@ -72,6 +79,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        echo Html::a('test',['product/category', 'categoryId'=>12]);
+        exit;
         return $this->render('index');
     }
 

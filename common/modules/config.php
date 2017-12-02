@@ -6,7 +6,7 @@
  * Time: 12:45 AM
  */
 
-use app\models\Modules;
+use common\models\Modules;
 
 $activeModules = Modules::find()->where(['position'=>'common'])->all();
 

@@ -8,15 +8,16 @@ return [
     'otherConfig' => [
         'maxAttempts' => 2,
         'enableRegistration'=>true,
-        //'layout' => '@app/themes/ace/views/layouts/main',
+        'layout' => '@app/themes/masa/views/layouts/main',
     ],
     'urlManagerRules' => [
         '/customer' => '/customermanagement/default/index',
-        '/customer/index' => '/customermanagement/users/index',
-        '/customer/insert' => '/customermanagement/users/create',
-        '/customer/edit/<id:\w+>' => '/customermanagement/users/update',
-        '/customer/show/<id:\w+>' => '/customermanagement/users/view',
-        '/customer/remove/<id:\w+>' => '/customermanagement/users/delete',
+        '/customer/login' => '/customermanagement/customers/index',
+        '/customer/signup' => '/customermanagement/customers/create',
+        '/customer/reset/<id:\w+>' => '/customermanagement/customers/reset',
+        '/customer/resetbytoken/<id:\w+>' => '/customermanagement/customers/resetbytoken',
+        '/customer/profile/<id:\w+>' => '/customermanagement/customers/view',
+
         '/customer/usergroup' => '/customermanagement/usergroup/index',
         '/customer/usergroup/insert' => '/customermanagement/usergroup/create',
         '/customer/usergroup/edit/<id:\w+>' => '/customermanagement/usergroup/update',

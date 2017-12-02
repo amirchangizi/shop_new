@@ -21,7 +21,7 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<?php $this->title = 'music'; ?>
+<?php $this->title = Yii::t('app','music'); ?>
     <div id="content">
 <div class="container">
 <div style="padding:0px; margin:0px; margin-top: 20px; background-color:#eee;font-family:arial,helvetica,sans-serif,verdana,'Open Sans'">
