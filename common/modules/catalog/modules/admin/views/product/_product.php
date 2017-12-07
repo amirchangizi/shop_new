@@ -2,7 +2,10 @@
 
 use common\helpers\LanguageHelper;
 use common\models\enums\ActivateStatus;
+use infinitydesign\jalaliDatePicker\jalaliDatePicker;
+use \common\helpers\JdfHelper;
 
+$jdf =  new JdfHelper;
 ?>
 
 <div class="row" id="form-element">
@@ -20,9 +23,56 @@ use common\models\enums\ActivateStatus;
 
     <div class="col-sm-12">
         <label class="col-sm-2"><?= $labels['date_available'] ?></label>
-        <div class="col-sm-4 "><?= $form->field($model, 'date_available')->textInput()->label(false) ?></div>
+        <div class="col-sm-4 ">
+            <?php
+                echo $form->field(
+                    $model,
+                    'date_available'
+                )
+                    ->widget(
+                        jalaliDatePicker::className(), [
+                        'options' => array(
+                            'format' => 'yyyy/mm/dd',
+                            'viewformat' => 'yyyy/mm/dd',
+                            'placement' => 'right',
+                            'todayBtn'=> 'linked',
+                        ),
+                        'htmlOptions' => [
+                            'id' => 'availableDate',
+                            'class'	=> 'form-control',
+                            'placeholder' => '1396/05/05',
+                            //'readonly' => 'readonly',
+                            'value' => !$model->isNewRecord ? $jdf->jdate('Y/m/d',$model->date_available) : null
+                        ]
+                    ])->label(false);
+            ?>
+        </div>
         <label class="col-sm-2"><?= $labels['date_expire'] ?></label>
-        <div class="col-sm-4 "><?= $form->field($model, 'date_expire')->textInput()->label(false) ?></div>
+        <div class="col-sm-4 ">
+            <?php
+
+            echo $form->field(
+                $model,
+                'date_expire'
+            )
+                ->widget(
+                    jalaliDatePicker::className(), [
+                    'options' => array(
+                        'format' => 'yyyy/mm/dd',
+                        'viewformat' => 'yyyy/mm/dd',
+                        'placement' => 'right',
+                        'todayBtn'=> 'linked',
+                    ),
+                    'htmlOptions' => [
+                        'id' => 'expiredate',
+                        'class'	=> 'form-control',
+                        'placeholder' => '1396/05/05',
+                        //'readonly' => 'readonly',
+                        'value' => !$model->isNewRecord ? $jdf->jdate('Y/m/d',$model->date_expire) : null
+                    ]
+                ])->label(false);
+            ?>
+        </div>
     </div>
 </div>
 

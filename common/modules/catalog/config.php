@@ -11,6 +11,8 @@ return [
     ],
     'urlManagerRules' => [
 
+        '/catalog/admin/html'                       => '/catalog/admin/html',
+
         '/catalog/admin/category'                   => '/catalog/admin/category',
         '/catalog/admin/category/index'             => '/catalog/admin/category/index',
         '/catalog/admin/category/insert'            => '/catalog/admin/category/create',

@@ -24,6 +24,7 @@ class AppAsset extends AssetBundle
         'css/bootsnav.css',
         'css/animate.min.css',
         'css/custom.css',
+        'css/style.css',
         'css/owl.carousel.css',
         'css/owl.theme.css',
         'css/style.mono.css',
@@ -50,6 +51,7 @@ class AppAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
-
+        //'airani\bootstrap\BootstrapRtlAsset',
+        //'rmrevin\yii\fontawesome\AssetBundle',
     ];
 }

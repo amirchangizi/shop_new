@@ -1,47 +1,89 @@
 <?php
 
-/* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\LoginForm */
+/* @var $this \yii\web\View */
+/* @var $content string */
+
 
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+use yii\widgets\ActiveForm;
+use yii\widgets\Breadcrumbs;
+use app\assets\AppAsset;
 
-$this->title = 'Login';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div id="content">
+            <div class="container">
 
-    <p>Please fill out the following fields to login:</p>
+                <div class="col-md-12">
+                    <ul class="breadcrumb">
+                        <li><?= Html::a('', ['index'], ['class'=>'fa fa-home']) ?>
+                        </li>
+                        <li>ثبت نام  / ورود</li>
+                    </ul>
 
-    <?php $form = ActiveForm::begin([
-        'id' => 'login-form',
-        'layout' => 'horizontal',
-        'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-            'labelOptions' => ['class' => 'col-lg-1 control-label'],
-        ],
-    ]); ?>
+                </div>
 
-        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+                <div class="col-md-6">
+                    <div class="box">
+                        <h1>ثبت نام</h1>
 
-        <?= $form->field($model, 'password')->passwordInput() ?>
+                        <p class="text-muted">برای ارتباط مستقیم با ما به صفحه 
+                            <?= Html::a('تماس با ما', ['contact'], ['class'=>'']) ?>
+                            مراجعه کنید
+                            .</p>
+                        <hr>
 
-        <?= $form->field($model, 'rememberMe')->checkbox([
-            'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-        ]) ?>
+                        <form action="customer-orders.html" method="post">
+                            <div class="form-group">
+                                <label for="name">نام کاربری</label>
+                                <input type="text" class="form-control" id="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">پست الکترونیک</label>
+                                <input type="text" class="form-control" id="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">رمز عبور</label>
+                                <input type="password" class="form-control" id="password">
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-user-md"></i>عضویت</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
-        <div class="form-group">
-            <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                <div class="col-md-6">
+                    <div class="box">
+                        <h1>ورود</h1>
+
+                       
+                        <hr>
+
+
+                            <?php
+
+
+                            $form = ActiveForm::begin([
+                                'id'=>'login-form',
+                            ]); ?>
+                            <div class="form-group">
+                                <?= $form->field($model, 'username')->textInput([ 'class'=>'form-control','maxlength' => true])->label(false) ?>
+                            </div>
+                            <div class="form-group">
+                                <?= $form->field($model, 'password')->passwordInput(['class'=>'form-control','maxlength' => true])->label(false) ?>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i>ورود</button>
+                            </div>
+                        <?php  ActiveForm::end(); ?>
+                    </div>
+                </div>
+
+
             </div>
+            <!-- /.container -->
         </div>
-
-    <?php ActiveForm::end(); ?>
-
-    <div class="col-lg-offset-1" style="color:#999;">
-        You may login with <strong>admin/admin</strong> or <strong>demo/demo</strong>.<br>
-        To modify the username/password, please check out the code <code>app\models\User::$users</code>.
-    </div>
-</div>
+    
+    

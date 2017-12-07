@@ -19,9 +19,9 @@ class ManufacturerHelper extends Component
         return ArrayHelper::map(Manufacturers::find()->all() ,'manufacturers_id' ,'manufacturers_name') ;
     }
 
-    public static function getManufacturerById()
+    public static function getManufacturerById($manufacturerId)
     {
-        return ArrayHelper::map(Manufacturers::find()->all() ,'manufacturers_id' ,'manufacturers_id') ;
+        return Manufacturers::find()->where(['manufacturers_id'=>$manufacturerId])->all();
     }
 
     public static function getAllManufacturer()

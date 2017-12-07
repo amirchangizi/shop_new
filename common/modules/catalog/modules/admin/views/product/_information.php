@@ -137,3 +137,13 @@ use common\models\enums\ConfirmStatus;
     </div>
 </div>
 
+<div class="row" id="form-element">
+
+    <div class="col-sm-12">
+        <label class="col-sm-2"><?= $labels['movie'] ?></label>
+        <div class="col-sm-4 "><?= $form->field($model, 'movie')->fileInput()->label(false) ?></div>
+        <label class="col-sm-2"></label>
+        <div class="col-sm-4 "></div>
+    </div>
+</div>
+

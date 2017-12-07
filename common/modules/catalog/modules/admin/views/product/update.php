@@ -12,6 +12,8 @@ use yii\helpers\Html;
         'model' => $model,
         'relatedModel' => $relatedModel,
         'categoryModel' => $categoryModel,
+        'discountModel' => $discountModel,
+        'imagesModel' => $imagesModel,
     ]) ?>
 
 </div>

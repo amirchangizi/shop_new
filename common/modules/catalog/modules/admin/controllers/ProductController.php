@@ -2,6 +2,7 @@
 
 namespace common\modules\catalog\modules\admin\controllers;
 
+use common\helpers\JdfHelper;
 use common\modules\catalog\models\ProductDiscount;
 use common\modules\catalog\models\ProductImage;
 use common\modules\catalog\models\ProductRelated;
@@ -83,12 +84,6 @@ class ProductController extends Controller
             $valid = $model->validate();
             $valid = Model::validateMultiple($discountModel) && $valid;
 
-
-
-            echo '<pre>';
-            //$model->save() ;
-            print_r(Yii::$app->request->post()) ;
-            exit;
             if($model->save())
             {
                 $model->saveDiscount($discountModel[0] , $post[$discountModel[0]->formName()],$model->product_id) ;
@@ -119,9 +114,17 @@ class ProductController extends Controller
         $model = $this->findModel($id);
         $relatedModel = new ProductRelated() ;
         $categoryModel = new ProductToCategory() ;
+        $discountModel = $model->productDiscounts ;
+        $imagesModel = $model->productImages ;
+
+        if(count($imagesModel) <= 0)
+            $imagesModel = [new ProductImage] ;
+
+        if(count($discountModel) <= 0)
+            $discountModel = [new ProductDiscount] ;
 
 
-        if ($model->load($post = Yii::$app->request->post()) && $model->save()) {
+        if ($model->load($post = Yii::$app->request->post()) && $model->save() ) { //
 
             $model->saveRelated($relatedModel , $post[$relatedModel->formName()] ,$model->product_id) ;
             $model->saveCategory($categoryModel ,$post[$categoryModel->formName()] ,$model->product_id) ;
@@ -132,6 +135,8 @@ class ProductController extends Controller
                 'model' => $model,
                 'relatedModel' => $relatedModel,
                 'categoryModel' => $categoryModel,
+                'discountModel' => $discountModel,
+                'imagesModel' => $imagesModel,
             ]);
         }
     }

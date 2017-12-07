@@ -30,7 +30,7 @@ class ProductHelper extends Component
         return Product::find()->where(['status'=>true ,'product_id' =>$productId ,'language_id'=> Yii::$app->language])->all()  ;
     }
 
-    public static function getProductByCategory($categoryId ,$limit = 4)
+    public static function getProductByCategory($categoryId ,$limit = 4, $sort = null)
     {
         $categoryIds  = ArrayHelper::map(ProductToCategory::find()->where(['category_id'=>$categoryId])->all() ,'product_id' ,'product_id') ;
 
@@ -51,6 +51,11 @@ class ProductHelper extends Component
     public static function getNewestProduct($limit = 4)
     {
         return Product::find()->where(['status'=>true ,'language_id'=> Yii::$app->language])->limit($limit)->orderBy(['product_id'=>SORT_DESC])->all() ;
+    }
+
+    public static function getProductByBrands($ids ,$limit = 12)
+    {
+        return Product::find()->where(['in','manufacturer_id',$ids])->limit($limit)->all() ;
     }
 
     public static function getBestSellerProduct()

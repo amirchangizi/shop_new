@@ -87,7 +87,7 @@ class Manufacturers extends \yii\db\ActiveRecord
             return true;
         }
         if ($this->imageFile) {
-            $path = Yii::getAlias('@app/web/uploads/manufacturers/images/');
+            $path = Yii::getAlias('@frontend/web/uploads/manufacturers/images/');
             $this->manufacturers_image = $this->imageFile->baseName . '.' . $this->imageFile->extension;
             $this->imageFile->saveAs($path . $this->imageFile->baseName . '.' . $this->imageFile->extension);
             return true;

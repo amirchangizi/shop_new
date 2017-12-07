@@ -62,4 +62,9 @@ class CategoryHelper extends Component
         return $ids ;
     }
 
+    public static function getAllMenu()
+    {
+        return Category::find()->where(['>','category_id', 1])->andWhere(['status'=>true , 'language_id'=>\Yii::$app->language])->orderBy(['lft'=>SORT_ASC])->all();
+    }
+
 }

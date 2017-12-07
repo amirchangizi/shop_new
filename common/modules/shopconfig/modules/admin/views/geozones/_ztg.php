@@ -2,6 +2,7 @@
 use common\helpers\ZoneHelper;
 use wbraganca\dynamicform\DynamicFormWidget;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 DynamicFormWidget::begin([
     'widgetContainer' => 'dynamicform_wrapper', // required: only alphanumeric characters plus "_" [A-Za-z0-9_]
@@ -40,7 +41,7 @@ DynamicFormWidget::begin([
 
                     <div class="panel-heading">
 
-                        <span class="panel-title-address">Address: <?= ($index + 1) ?></span>
+                        <span class="panel-title-address">zone: <?= ($index + 1) ?></span>
 
                         <button type="button" class="pull-right remove-item btn btn-danger btn-xs"><i class="fa fa-minus"></i></button>
 
@@ -62,14 +63,27 @@ DynamicFormWidget::begin([
 
                         ?>
 
-                        <?= $form->field($modelztg, "[{$index}]zone_country_id")->dropDownList(ZoneHelper::getCountry()) ?>
+                        <?= $form->field($modelztg, "[{$index}]zone_country_id")->dropDownList(ZoneHelper::getCountry(),['onChange' =>'
+                                    $.get( "'.Url::toRoute('/config/admin/geozones/zone').'", { id: $(this).val() } )
+                                        .success(function( data ) {
+                                            var $el = $("#zoneId_'.$index.'");
+                                            $.each(data, function(key, value) {
+                                               $el.append($(\'<option></option>\').attr(\'value\', value).text(key));
+                                               
+                                               $el.val(value);
+                                               
+                                            });
+                                           
+                                        }
+                                    );
+                                ']) ?>
 
 
                         <div class="row">
 
                             <div class="col-sm-6">
 
-                                <?= $form->field($modelztg, "[{$index}]zone_id")->dropDownList(ZoneHelper::getZoneByCountry(1)) ?>
+                                <?= $form->field($modelztg, "[{$index}]zone_id")->dropDownList([],['id'=>'zoneId_'.$index]) ?>
 
                             </div>
 

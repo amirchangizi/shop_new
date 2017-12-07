@@ -2,8 +2,11 @@
 
 namespace common\modules\customermanagement\models;
 
+use frontend\models\Customers;
 use Yii;
 use yii\base\Model;
+//use frontend\models\Customers ;
+
 
 /**
  * Login form
@@ -27,12 +30,12 @@ class LoginForm extends Model
             // username and password are both required
             [['username', 'password'], 'required'],
 
-            [['username', 'password'], 'match', 'pattern' => '/^[A-Za-z0-9_~\-@\\^\(\)]+$/'],
+            //[['username', 'password'], 'match', 'pattern' => '/^[A-Za-z0-9_~\-@\\^\(\)]+$/'],
 
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
-            ['password', 'validatePassword'],
+            //['password', 'validatePassword'],
         ];
     }
 
@@ -61,6 +64,8 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
+            print_r($this->getUser());
+            exit;
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         } else {
             return false;
@@ -74,8 +79,13 @@ class LoginForm extends Model
      */
     protected function getUser()
     {
+        echo $this->username ;
+        Customers::findAll();
+        //print_r(Customers::find()->where(['customer_username' => $this->username ,'is_block'=>0 ])->one()) ;
+        exit('user');
         if ($this->_user === null) {
             $this->_user = Customers::find()->where(['customer_username' => $this->username ,'is_block'=>0 ])->one();
+
         }
 
         return $this->_user;

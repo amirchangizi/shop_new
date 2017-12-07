@@ -74,6 +74,7 @@ return [
         '/config/admin/countries/remove/<id:\w+>'  => '/shopconfig/admin/countries/delete',
 
         '/config/admin/geozones'                  => '/shopconfig/admin/geozones' ,
+        '/config/admin/geozones/zone'             => '/shopconfig/admin/geozones/zone' ,
         '/config/admin/geozones/index'            => '/shopconfig/admin/geozones' ,
         '/config/admin/geozones/insert'           => '/shopconfig/admin/geozones/create',
         '/config/admin/geozones/edit/<id:\w+>'    => '/shopconfig/admin/geozones/update',

@@ -50,6 +50,7 @@ class AdminModule extends \yii\base\Module
                     ['label' => '<i class="fa fa-user" aria-hidden="true"></i> ' . Yii::t('app', 'Option'),'url' => ['/catalog/admin/option'],],
                     ['label' => '<i class="fa fa-users" aria-hidden="true"></i> ' . Yii::t('app', 'manufacturer'),'url' => ['/catalog/admin/manufacturers']],
                     ['label' => '<i class="fa fa-users" aria-hidden="true"></i> ' . Yii::t('app', 'information'),'url' => ['/catalog/admin/information']],
+                    ['label' => '<i class="fa fa-users" aria-hidden="true"></i> ' . Yii::t('app', 'Html Content'),'url' => ['/catalog/admin/html']],
 
                 ],
                 'itemOptions'=> ['class'=>'itemOptions'] ,

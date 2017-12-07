@@ -2,7 +2,9 @@
 
 namespace common\modules\shopconfig\modules\admin\controllers;
 
+use common\helpers\ZoneHelper;
 use common\modules\shopconfig\models\ZonesToGeoZones;
+use GuzzleHttp\Psr7\Response;
 use Yii;
 use common\modules\shopconfig\models\GeoZones;
 use common\modules\shopconfig\models\GeozonesSearch;
@@ -31,6 +33,20 @@ class GeozonesController extends Controller
                 ],
             ],
         ];
+    }
+
+    public function actionZone()
+    {
+
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $id = Yii::$app->request->get('id') ;
+        $zones = ZoneHelper::getZoneByCountry($id);
+
+        if(!$zones)
+            return [] ;
+
+        return $zones;
+        //return ;
     }
 
     /**

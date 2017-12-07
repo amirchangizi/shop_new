@@ -8,13 +8,14 @@
 namespace common\modules\customermanagement\actions;
 
 
+use common\modules\customermanagement\models\Customers;
 use Yii ;
 use yii\base\Action ;
 use yii\web\NotFoundHttpException;
 use common\modules\customermanagement\models\LoginForm;
 
 
-class LoginAction extends Action
+class LvsRAction extends Action
 {
 
     const EVENT_AFTER_LOGIN = 'afterLogin' ;
@@ -33,14 +34,19 @@ class LoginAction extends Action
     {
         try
         {
+
             if (!Yii::$app->user->isGuest) {
                 return $this->controller->goHome();
             }
 
             $model = new LoginForm();
-//
-            if ($model->load(Yii::$app->request->post()) && $model->login()) {
 
+            $signupModel = new Customers() ;
+
+            if ($model->load(Yii::$app->request->post()) ) { //&& $model->login()
+                print_r(Yii::$app->request->post()) ;
+                //echo  $model->login() ;
+                exit;
                 return $this->controller->goBack();
             } else {
                 if($this->active_partial)
@@ -50,6 +56,7 @@ class LoginAction extends Action
 
                 return $this->controller->render('login', [
                     'model' => $model,
+                    'signupModel' => $signupModel,
                 ]);
             }
         }

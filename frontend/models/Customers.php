@@ -1,6 +1,6 @@
 <?php
 
-namespace common\modules\customermanagement\models;
+namespace frontend\models;
 
 use Yii;
 use yii\db\ActiveRecord;
