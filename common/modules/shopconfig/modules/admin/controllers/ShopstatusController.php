@@ -8,27 +8,12 @@ use common\modules\shopconfig\models\ShopStatus;
 use common\modules\shopconfig\models\ShopstatusSearch;
 
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * ShopstatusController implements the CRUD actions for ShopStatus model.
  */
 class ShopstatusController extends BaseController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    //'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * Lists all ShopStatus models.

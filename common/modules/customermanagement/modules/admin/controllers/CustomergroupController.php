@@ -6,42 +6,13 @@ use app\commons\BaseController;
 use Yii;
 use common\modules\customermanagement\models\CustomerGroup;
 use common\modules\customermanagement\models\CustomergroupSearch;
-use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * CustomergroupController implements the CRUD actions for CustomerGroup model.
  */
 class CustomergroupController extends BaseController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        $behavior = parent::behaviors() ;
-        $myBehavior = [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'actions' => ['index', 'view' ,'create' ,'update','delete'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-        ];
-
-        return array_merge($behavior,$myBehavior) ;
-    }
 
     /**
      * Lists all CustomerGroup models.

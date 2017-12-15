@@ -2,32 +2,18 @@
 
 namespace common\modules\shopconfig\modules\admin\controllers;
 
+use app\commons\BaseController;
 use Yii;
 use common\modules\shopconfig\models\TaxRates;
 use common\modules\shopconfig\models\TaxratesSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * TaxratesController implements the CRUD actions for TaxRates model.
  */
-class TaxratesController extends Controller
+class TaxratesController extends BaseController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
+
 
     /**
      * Lists all TaxRates models.

@@ -3,6 +3,7 @@ use common\helpers\CategoryHelper;
 use common\helpers\ManufacturerHelper;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 ?>
@@ -119,23 +120,16 @@ _________________________________________________________ -->
 
                         <div class="col-sm-12 col-md-8  products-number-sort">
                             <div class="row">
-                                <form class="form-inline">
+
                                     <div class="col-md-6 col-sm-6">
                                         <div class="products-number">
-                                            <strong>نمایش</strong>  <a href="#" class="btn btn-default btn-sm btn-primary">12</a>  <a href="#" class="btn btn-default btn-sm">24</a>  <a href="#" class="btn btn-default btn-sm">همه</a> محصولات
+                                            <strong><?= Yii::t('app' ,'show')?></strong>
+                                                <a href="<?= Url::to(['product/category','categoryId'=>$categoryId,'limit'=>12])?>" class="btn btn-default btn-sm btn-primary">12</a>
+                                                <a href="<?= Url::to(['product/category','categoryId'=>$categoryId,'limit'=>24])?>" class="btn btn-default btn-sm">24</a>
+                                                                        محصولات
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="products-sort-by">
-                                            <strong>مرتب کردن بر اساس: </strong>
-                                            <select name="sort-by" class="form-control">
-                                                <option>قیمت</option>
-                                                <option>نام</option>
-                                                <option>مدل</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </form>
+
                             </div>
                         </div>
                     </div>
@@ -156,40 +150,40 @@ _________________________________________________________ -->
                                     <div class="flipper">
                                         <div class="front">
                                             <a href="<?= Yii::$app->urlManager->createUrl(['product/view' ,'id'=>$product->product_id ])?>">
-                                                <?= Html::img('@web/img/product/'.$product->image,['class'=>'img-responsive'])  ?>
+                                                <?= Html::img('@web/img/product/'.$product->image,['class'=>'img-responsive category-img'])  ?>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                                 <a href="<?= Yii::$app->urlManager->createUrl(['product/view' ,'id'=>$product->product_id ])?>" class="invisible">
-                                    <img src="img/540-320.jpg" alt="" class="img-responsive">
+                                    <img src="img/540-320.jpg" alt="" class="img-responsive" style="height: 180px;">
                                 </a>
                                 <div class="text">
                                     <h3><a href="<?= Yii::$app->urlManager->createUrl(['product/view' ,'id'=>$product->product_id ])?>"><?= $product->name ?></a></h3>
-                                    <div class="col-lg-12"  style="margin-bottom: 15px;margin-top: 15px;">
-                                        <div class="col-lg-1">
+                                    <div class="col-sm-12"  style="margin-bottom: 15px;margin-top: 15px;">
+                                        <div class="col-sm-1">
                                             <i class="fa fa-play-circle" aria-hidden="true" title="some thing"></i>
                                         </div>
-                                        <div class="col-lg-1">
+                                        <div class="col-sm-1">
                                             <i class="fa fa-microphone" aria-hidden="true" title="some thing"></i>
                                         </div>
-                                        <div class="col-lg-1">
+                                        <div class="col-sm-1">
                                             <i class="fa fa-bluetooth-b" aria-hidden="true" title="some thing"></i>
                                         </div>
-                                        <div class="col-lg-1">
+                                        <div class="col-sm-1">
                                             <i class="fa fa fa-wifi" aria-hidden="true" title="some thing"></i>
                                         </div>
-                                        <div class="col-lg-1">
+                                        <div class="col-sm-1">
                                             <i class="fa fa-android" aria-hidden="true" title="some thing"></i>
                                         </div>
-                                        <div class="col-lg-1">
+                                        <div class="col-sm-1">
                                             <i class="fa fa-mobile" aria-hidden="true" title="some thing"></i>
                                         </div>
                                     </div>
                                     <p class="price"><?= $product->price ?></p>
                                     <p class="buttons">
                                         <a href="<?= Yii::$app->urlManager->createUrl(['product/view' ,'id'=>$product->product_id ])?>" class="btn btn-default">View detail</a>
-                                        <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        <a href="<?= Yii::$app->urlManager->createUrl(['order/add' ,'id'=>$product->product_id ])?>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </p>
                                 </div>
                                 <!-- /.text -->

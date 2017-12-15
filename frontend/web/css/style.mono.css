@@ -564,7 +564,7 @@ h1 {
   font-size: 18px;
   font-weight: 700;
   margin-top: -133px;
-  height: 15px;
+  height: 30px;
   text-align: center;
   overflow: hidden;
   color: #fff;
@@ -577,6 +577,7 @@ h1 {
   text-align: center;
   margin-top: -15px;
   color: #000;
+  display: inline-block;
 }
 #content .product .text p.price del {
   color: #fff;
@@ -1805,4 +1806,16 @@ address {
     background-color: #fff;
     color: #000;
 }
+.category-img{
+    height: 200px;
+    width: 100%;
+}
 
+.carousel-inner > .item > img{
+ width:100% !important;
+}
+.related-img{
+      width: 100%;
+      height: 200px;
+      padding:10px 0;
+}

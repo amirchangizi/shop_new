@@ -2,33 +2,19 @@
 
 namespace common\modules\catalog\modules\admin\controllers;
 
+use app\commons\BaseController;
 use Yii;
 use common\modules\catalog\models\Manufacturers;
 use common\modules\catalog\models\ManufacturersSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 
 /**
  * ManufacturersController implements the CRUD actions for Manufacturers model.
  */
-class ManufacturersController extends Controller
+class ManufacturersController extends BaseController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
+
 
     /**
      * Lists all Manufacturers models.

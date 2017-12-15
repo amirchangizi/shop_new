@@ -6,42 +6,14 @@ use app\commons\BaseController;
 use Yii;
 use common\modules\customermanagement\models\Customers;
 use common\modules\customermanagement\models\CustomersSearch;
-use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * CustomersController implements the CRUD actions for Customers model.
  */
 class CustomersController extends BaseController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        $behavior = parent::behaviors() ;
-        $myBehavior = [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'actions' => ['index', 'view' ,'create' ,'update','delete'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-        ];
 
-        return array_merge($behavior,$myBehavior) ;
-    }
 
     /**
      * Lists all Customers models.

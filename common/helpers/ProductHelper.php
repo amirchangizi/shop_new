@@ -8,6 +8,7 @@
 namespace common\helpers;
 
 use common\modules\catalog\models\Product;
+use common\modules\catalog\models\ProductAttribute;
 use common\modules\catalog\models\ProductRelated;
 use common\modules\catalog\models\ProductToCategory;
 use Yii;
@@ -27,7 +28,7 @@ class ProductHelper extends Component
 
     public static function getProductById($productId)
     {
-        return Product::find()->where(['status'=>true ,'product_id' =>$productId ,'language_id'=> Yii::$app->language])->all()  ;
+        return Product::find()->where(['status'=>true ,'product_id' =>$productId ,'language_id'=> Yii::$app->language])->one()  ;
     }
 
     public static function getProductByCategory($categoryId ,$limit = 4, $sort = null)
@@ -41,6 +42,17 @@ class ProductHelper extends Component
     {
         $relatedIds = ArrayHelper::map(ProductRelated::find()->where(['product_id'=>$productId])->all() ,'related_id' ,'related_id') ;
         return Product::find()->where(['status'=>true,'language_id'=> Yii::$app->language])->andWhere(['IN','product_id',$relatedIds])->limit($limit)->orderBy(['product_id'=>SORT_DESC])->all()  ;
+    }
+
+    public static function getMultiProductRelated(array $productIds ,$limit = 2)
+    {
+        $relatedIds = ArrayHelper::map(ProductRelated::find()->where(['IN','product_id',$productIds] )->all() ,'related_id' ,'related_id') ;
+        return Product::find()->where(['status'=>true,'language_id'=> Yii::$app->language])->andWhere(['IN','product_id',$relatedIds])->limit($limit)->orderBy(['product_id'=>SORT_DESC])->all()  ;
+    }
+
+    public static function getProductAttribute($productId)
+    {
+        return ArrayHelper::map(ProductAttribute::find()->where(['product_id'=>$productId])->all() ,'attribute_name' ,'attribute_desc') ;
     }
 
     public static function getSpecialProduct($limit = 4)

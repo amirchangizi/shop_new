@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\modules\catalog\models\ProductSearch */
@@ -14,7 +15,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('<i class="fa fa-plus" aria-hidden="true"></i>', ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::button('<i class="fa fa-recycle" aria-hidden="true"></i>', ['id'=>'groupRemove','class' => 'btn btn-danger']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -22,7 +22,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'summary' => '',
         'columns' => [
             ['class' => 'yii\grid\CheckboxColumn'],
+            [
+                'attribute' => 'product_id',
+                'format' => 'raw',
+                'value' =>function ($data) {
+                    return $data->product_id;
 
+                },
+            ],
             [
                 'attribute' => 'name',
                 'format' => 'raw',
@@ -91,7 +98,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{update} {delete}',
+                'template' => '{update} {delete} {actions}',
                 'buttons'=>[
                     'update' => function ($url, $model) {
                         return Html::a('<img src="'.Yii::getAlias('@web').'/images/icons/edit16.png" />', $url, [
@@ -104,6 +111,23 @@ $this->params['breadcrumbs'][] = $this->title;
                             'title' => Yii::t('yii', 'delete'),
                         ]);
 
+                    },
+                    'actions' => function ($url, $model) {
+
+                        $cycle_id = 1;
+
+
+                        return  '
+
+                                <span class="dropdown">
+                                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cog"></i></a>
+                                   <ul class="dropdown-menu dropdown-menu-right">
+                                      <li><a href="'.Url::to(['education', 'cycle_id'=> $cycle_id]).'"><i class="icon-profile"></i> '. Yii::t('app' ,'more picture').'</a></li>
+                                      <li><a href="'.Url::to(['exam-zone', 'cycle_id'=> $cycle_id]).'"><i class="icon-location4"></i> '. Yii::t('app' ,'product attribute').'</a></li>
+                                      <li class="divider"></li>
+                                   </ul>
+                                </span>
+                                ';
                     },
                 ]
             ],

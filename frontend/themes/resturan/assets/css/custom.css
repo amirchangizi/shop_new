@@ -1,0 +1,110 @@
+body{
+	background-color: #eee !important;
+}
+@font-face {
+font-family: 'BYekan';
+   src: url('../fonts/BYekan.eot?#') format('eot'),  /* IE6–8 */
+        url('../fonts/BYekan.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+        url('../fonts/BYekan.ttf') format('truetype');  /* Saf3—5, Chrome4+, FF3.5, Opera 10+ */
+}
+body{
+    font-family: BYekan !important;
+    src: url(../fonts/BYekan.ttf) !important;
+    src: url(../fonts/BYekan.woff) !important;
+    src: url(../fonts/BYekan.eot) !important;
+    overflow-x: hidden;
+}
+@font-face {
+    font-family: BYekan !important;
+    src: url(../fonts/BYekan.ttf) !important;
+    src: url(../fonts/BYekan.woff) !important;
+    src: url(../fonts/BYekan.eot) !important;
+}
+div , p , h4 , h3 , h2 , h1 , h5 , h6{
+    font-family: BYekan !important;
+    src: url(../fonts/BYekan.ttf) !important;
+    src: url(../fonts/BYekan.woff) !important;
+    src: url(../fonts/BYekan.eot) !important;
+}
+@media (max-width: 800px){
+    our-logo{
+        margin-top: 1em;
+    }   
+}
+.owl-carousel
+{
+	margin-top: 156px;
+}
+.header-content
+{
+	margin-top: 30vh;
+	display: inline-block;
+}
+.header-title, .header-sub-title
+{
+	font-family: 'Roboto', sans-serif;
+	text-transform: uppercase;
+	color: #333;
+}
+.header-title
+{
+	font-size: 112px;
+	font-weight: 100;
+	margin-bottom: 0px;
+	line-height: 1;
+}
+.header-sub-title
+{
+	font-size: 16px;
+	margin-left: 10px;
+}
+.owl-carousel .owl-wrapper, .owl-carousel .owl-item .item
+{
+	height: 80vh;
+	background-repeat: no-repeat;
+}
+.owl-carousel .owl-wrapper, .owl-carousel .owl-item:nth-child(1) .item
+{
+	background: url('../images/1.jpg');
+	background-size: cover;
+	background-position: bottom;
+}
+.owl-carousel .owl-wrapper, .owl-carousel .owl-item:nth-child(2) .item
+{
+	background: url('../images/2.jpg');
+	background-size: cover;
+}
+.owl-carousel .owl-wrapper, .owl-carousel .owl-item:nth-child(3) .item
+{
+	background: url('../images/3.jpg');
+	background-size: cover;
+}
+.owl-theme .owl-controls .owl-buttons div
+{
+	position: absolute;
+	bottom: -25px;
+	color: #000;
+	padding: 15px;
+	width: 50px;
+	height: 50px;
+	border-radius: 100%;
+	font-size: 15px;
+	opacity: 1;
+	margin: 0px;
+	transition: all .4s;
+	background: #8bc34a;
+	color: #fff;
+}
+.owl-theme .owl-controls .owl-buttons div:hover
+{
+	color: #000;
+	background: #fff;
+}
+.owl-prev
+{
+	right: 25%;
+}
+.owl-next
+{
+	right: 21%;
+}

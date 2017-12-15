@@ -3,8 +3,6 @@
 namespace common\modules\shopconfig\modules\admin\controllers;
 
 use Yii;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
 use app\commons\BaseController;
 use common\modules\shopconfig\models\Language;
@@ -15,35 +13,7 @@ use common\modules\shopconfig\models\LanguageSearch;
  */
 class LanguageController extends BaseController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        $behavior = parent::behaviors() ;
-        $myBehavior = [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    //'delete' => ['POST'],
-                ],
-            ],
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'actions' => ['index', 'view' ,'create' ,'update','delete'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-        ];
 
-        return array_merge($behavior,$myBehavior) ;
-
-
-    }
 
     /**
      * Lists all Language models.

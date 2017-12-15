@@ -30,6 +30,9 @@ class ProductController extends Controller
             'brands' => [
                 'class' => 'common\modules\catalog\Actions\BrandsAction',
             ],
+            'view' => [
+                'class' => 'common\modules\catalog\Actions\ProductViewAction',
+            ],
         ]   ;
     }
 

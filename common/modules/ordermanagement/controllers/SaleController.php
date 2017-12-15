@@ -8,14 +8,14 @@
 
 namespace common\modules\ordermanagement\controllers;
 
+use app\commons\BaseController;
 use common\modules\ordermanagement\models\OrderHistory;
 use common\modules\ordermanagement\models\Orders;
 use common\modules\ordermanagement\models\OrderSearch;
 use Yii;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
-class SaleController  extends Controller
+class SaleController  extends BaseController
 {
 
     public function actionHistory()

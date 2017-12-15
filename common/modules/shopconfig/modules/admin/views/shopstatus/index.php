@@ -18,7 +18,6 @@ $this->title = Yii::t('app', 'Shop Statuses');
 
     <p>
         <?= Html::a('<i class="fa fa-plus" aria-hidden="true"></i>', ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::button('<i class="fa fa-recycle" aria-hidden="true"></i>', ['id'=>'groupRemove','class' => 'btn btn-danger']) ?>
     </p>
 
 

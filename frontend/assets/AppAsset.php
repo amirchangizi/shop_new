@@ -21,7 +21,9 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/global.css',
-        'css/bootsnav.css',
+        'css/bootstrap.css',
+        'css/bootstrap-rtl.min.css',
+        'css/bootstrap-rtl.css',
         'css/animate.min.css',
         'css/custom.css',
         'css/style.css',
@@ -29,6 +31,7 @@ class AppAsset extends AssetBundle
         'css/owl.theme.css',
         'css/style.mono.css',
         'css/font-awesome.css',
+        'css/font-awesome.min.css',
     ];
     public $js = [
         'js/bootstrap.js',

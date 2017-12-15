@@ -2,9 +2,10 @@
 
 namespace common\modules\customermanagement\models;
 
-use frontend\models\Customers;
+use common\modules\customermanagement\models\Customers ;
 use Yii;
 use yii\base\Model;
+
 //use frontend\models\Customers ;
 
 
@@ -63,9 +64,10 @@ class LoginForm extends Model
      */
     public function login()
     {
+
         if ($this->validate()) {
-            print_r($this->getUser());
-            exit;
+            if(is_null($this->getUser()))
+                return false;
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         } else {
             return false;
@@ -79,10 +81,6 @@ class LoginForm extends Model
      */
     protected function getUser()
     {
-        echo $this->username ;
-        Customers::findAll();
-        //print_r(Customers::find()->where(['customer_username' => $this->username ,'is_block'=>0 ])->one()) ;
-        exit('user');
         if ($this->_user === null) {
             $this->_user = Customers::find()->where(['customer_username' => $this->username ,'is_block'=>0 ])->one();
 

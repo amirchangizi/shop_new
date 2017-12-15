@@ -12,6 +12,7 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 ?>
+
     <div id="content">
             <div class="container">
 
@@ -34,23 +35,35 @@ use app\assets\AppAsset;
                             .</p>
                         <hr>
 
-                        <form action="customer-orders.html" method="post">
+                        <?php
+                            $form = ActiveForm::begin([
+                                'id'=>'signup-form',
+                            ]);
+                        ?>
+
+                            <div class="form-group">
+                                <label for="name">نام </label>
+                                <?= $form->field($signupModel, 'customer_name')->textInput([ 'class'=>'form-control','maxlength' => true])->label(false) ?>
+                            </div>
+
                             <div class="form-group">
                                 <label for="name">نام کاربری</label>
-                                <input type="text" class="form-control" id="name">
+                                <?= $form->field($signupModel, 'customer_username')->textInput([ 'class'=>'form-control','maxlength' => true])->label(false) ?>
                             </div>
-                            <div class="form-group">
-                                <label for="email">پست الکترونیک</label>
-                                <input type="text" class="form-control" id="email">
-                            </div>
+
                             <div class="form-group">
                                 <label for="password">رمز عبور</label>
-                                <input type="password" class="form-control" id="password">
+                                <?= $form->field($signupModel, 'customer_password')->passwordInput([ 'class'=>'form-control','maxlength' => true])->label(false) ?>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">پست الکترونیک</label>
+                                <?= $form->field($signupModel, 'customer_email')->textInput([ 'class'=>'form-control','maxlength' => true])->label(false) ?>
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-user-md"></i>عضویت</button>
                             </div>
-                        </form>
+                        <?php  ActiveForm::end(); ?>
                     </div>
                 </div>
 
@@ -63,11 +76,10 @@ use app\assets\AppAsset;
 
 
                             <?php
-
-
-                            $form = ActiveForm::begin([
-                                'id'=>'login-form',
-                            ]); ?>
+                                $form = ActiveForm::begin([
+                                    'id'=>'login-form',
+                                ]);
+                            ?>
                             <div class="form-group">
                                 <?= $form->field($model, 'username')->textInput([ 'class'=>'form-control','maxlength' => true])->label(false) ?>
                             </div>

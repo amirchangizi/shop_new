@@ -41,7 +41,7 @@ DynamicFormWidget::begin([
 
                     <div class="panel-heading">
 
-                        <span class="panel-title-address">zone: <?= ($index + 1) ?></span>
+                        <span class="panel-title-address">zone: <?= $index = $index + 1  ?></span>
 
                         <button type="button" class="pull-right remove-item btn btn-danger btn-xs"><i class="fa fa-minus"></i></button>
 
@@ -66,14 +66,14 @@ DynamicFormWidget::begin([
                         <?= $form->field($modelztg, "[{$index}]zone_country_id")->dropDownList(ZoneHelper::getCountry(),['onChange' =>'
                                     $.get( "'.Url::toRoute('/config/admin/geozones/zone').'", { id: $(this).val() } )
                                         .success(function( data ) {
-                                            var $el = $("#zoneId_'.$index.'");
-                                            $.each(data, function(key, value) {
-                                               $el.append($(\'<option></option>\').attr(\'value\', value).text(key));
-                                               
-                                               $el.val(value);
-                                               
-                                            });
-                                           
+                                                var index  = 0 ;
+                                                $.each(data, function(text, key) {
+                                                    var option = new Option(key, text);
+                                                    $("#zone_"+index).append($(option));
+                                                    
+                                                });
+                                                index = index + 1 ;
+                                            
                                         }
                                     );
                                 ']) ?>
@@ -83,7 +83,7 @@ DynamicFormWidget::begin([
 
                             <div class="col-sm-6">
 
-                                <?= $form->field($modelztg, "[{$index}]zone_id")->dropDownList([],['id'=>'zoneId_'.$index]) ?>
+                                <?= $form->field($modelztg, "[{$index}]zone_id")->dropDownList([],['id'=>'zone_']) ?>
 
                             </div>
 

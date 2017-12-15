@@ -2,32 +2,17 @@
 
 namespace common\modules\catalog\modules\admin\controllers;
 
+use app\commons\BaseController;
 use Yii;
 use common\modules\catalog\models\Information;
 use common\modules\catalog\models\InformationSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * InformationController implements the CRUD actions for Information model.
  */
-class InformationController extends Controller
+class InformationController extends BaseController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * Lists all Information models.

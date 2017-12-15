@@ -2,6 +2,7 @@
 
 namespace common\modules\catalog\modules\admin\controllers;
 
+use app\commons\BaseController;
 use common\helpers\JdfHelper;
 use common\modules\catalog\models\ProductDiscount;
 use common\modules\catalog\models\ProductImage;
@@ -11,30 +12,14 @@ use Yii;
 use common\modules\catalog\models\Product;
 use common\modules\catalog\models\ProductSearch;
 use yii\base\Model;
-use yii\helpers\ArrayHelper;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * ProductController implements the CRUD actions for Product model.
  */
-class ProductController extends Controller
+class ProductController extends BaseController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
+
 
     /**
      * Lists all Product models.

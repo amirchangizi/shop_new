@@ -2,6 +2,7 @@
 
 namespace common\modules\catalog\modules\admin\controllers;
 
+use app\commons\BaseController;
 use common\modules\catalog\models\OptionValue;
 use Yii;
 use common\modules\catalog\models\Option;
@@ -10,30 +11,15 @@ use yii\base\Model;
 use yii\httpclient\Exception;
 use yii\web\Response;
 use yii\helpers\ArrayHelper;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use yii\widgets\ActiveForm;
 
 /**
  * OptionController implements the CRUD actions for Option model.
  */
-class OptionController extends Controller
+class OptionController extends BaseController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
+
 
     /**
      * Lists all Option models.

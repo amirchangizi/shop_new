@@ -15,9 +15,9 @@ use yii\helpers\ArrayHelper;
 class InformationHelper extends Component
 {
 
-    public static function getBottomInformation()
+    public static function getBottomInformation($limit = 4)
     {
-        return ArrayHelper::map(Information::find()->where(['bottom'=>true ,'status'=>true,'language_id'=> Yii::$app->language])->all() ,'information_id' ,'title') ;
+        return ArrayHelper::map(Information::find()->where(['bottom'=>true ,'status'=>true,'language_id'=> Yii::$app->language])->limit($limit)->orderBy(['information_id' => SORT_DESC])->all() ,'information_id' ,'title') ;
     }
 
     public static function getAllInformation()

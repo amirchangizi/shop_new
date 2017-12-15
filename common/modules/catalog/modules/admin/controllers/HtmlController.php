@@ -2,32 +2,17 @@
 
 namespace common\modules\catalog\modules\admin\controllers;
 
+use app\commons\BaseController;
 use Yii;
 use common\modules\catalog\models\Html;
 use common\modules\catalog\models\HtmlSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * HtmlController implements the CRUD actions for Html model.
  */
-class HtmlController extends Controller
+class HtmlController extends BaseController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * Lists all Html models.

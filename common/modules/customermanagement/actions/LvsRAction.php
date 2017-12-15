@@ -40,25 +40,25 @@ class LvsRAction extends Action
             }
 
             $model = new LoginForm();
-
             $signupModel = new Customers() ;
+            if ($model->load(Yii::$app->request->post()) && $model->login()) {
 
-            if ($model->load(Yii::$app->request->post()) ) { //&& $model->login()
-                print_r(Yii::$app->request->post()) ;
-                //echo  $model->login() ;
-                exit;
                 return $this->controller->goBack();
-            } else {
-                if($this->active_partial)
-                    return $this->controller->renderPartial('login', [
-                        'model' => $model,
-                    ]);
-
-                return $this->controller->render('login', [
+            }
+            if ($signupModel->load(Yii::$app->request->post()) && $signupModel->save() ) {
+                return $this->controller->redirect(['site/index']) ;
+            }
+            if($this->active_partial)
+                return $this->controller->renderPartial('login', [
                     'model' => $model,
                     'signupModel' => $signupModel,
                 ]);
-            }
+
+
+            return $this->controller->render('login', [
+                'model' => $model,
+                'signupModel' => $signupModel,
+            ]);
         }
         catch (\Exception $e)
         {

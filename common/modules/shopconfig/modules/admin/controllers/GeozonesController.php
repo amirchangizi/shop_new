@@ -2,38 +2,23 @@
 
 namespace common\modules\shopconfig\modules\admin\controllers;
 
+use app\commons\BaseController;
 use common\helpers\ZoneHelper;
 use common\modules\shopconfig\models\ZonesToGeoZones;
-use GuzzleHttp\Psr7\Response;
 use Yii;
 use common\modules\shopconfig\models\GeoZones;
 use common\modules\shopconfig\models\GeozonesSearch;
 use yii\base\Exception;
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * GeozonesController implements the CRUD actions for GeoZones model.
  */
-class GeozonesController extends Controller
+class GeozonesController extends BaseController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
+
 
     public function actionZone()
     {

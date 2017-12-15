@@ -2,32 +2,18 @@
 
 namespace common\modules\shopconfig\modules\admin\controllers;
 
+use app\commons\BaseController;
 use Yii;
 use common\modules\shopconfig\models\Zones;
 use common\modules\shopconfig\models\ZonesSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * ZonesController implements the CRUD actions for Zones model.
  */
-class ZonesController extends Controller
+class ZonesController extends BaseController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
+
 
     /**
      * Lists all Zones models.

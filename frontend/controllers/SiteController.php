@@ -43,7 +43,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    //'logout' => ['post'],
                 ],
             ],
         ];
@@ -60,6 +60,9 @@ class SiteController extends Controller
             ],
             'login' => [
                 'class' => 'common\modules\customermanagement\actions\LvsRAction',
+            ],
+            'logout' => [
+                'class' => 'common\modules\customermanagement\actions\LogoutAction',
             ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
@@ -78,6 +81,10 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    public function actionCheckout()
+    {
+        return $this->render('checkout');
+    }
 
     /**
      * Displays contact page.
@@ -103,14 +110,22 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays about page.
-     *
-     * @return mixed
+     resturan controller
      */
-    public function actionAbout()
+   
+    public function actionCart()
     {
-        return $this->render('about');
+        return $this->render('cart');
     }
-
+    public function actionAccount()
+    {
+        return $this->render('account');
+    }
+    public function actionFactor()
+    {
+        return $this->render('factor');
+    }
+   
+   
 
 }

@@ -2,32 +2,17 @@
 
 namespace common\modules\shopconfig\modules\admin\controllers;
 
+use app\commons\BaseController;
 use Yii;
 use common\modules\shopconfig\models\Currency;
 use common\modules\shopconfig\models\CurrencySearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * CurrencyController implements the CRUD actions for Currency model.
  */
-class CurrencyController extends Controller
+class CurrencyController extends BaseController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * Lists all Currency models.

@@ -14,6 +14,7 @@ class ThemePossitionStatus extends BaseEnum
     const HOME = 'Home';
     const RIGHT = 'Right';
     const LEFT = 'Left';
+    const CONTACT = 'Contact';
 
 
     /**
@@ -30,6 +31,8 @@ class ThemePossitionStatus extends BaseEnum
         self::HOME => 'Home',
         self::RIGHT => 'Right',
         self::LEFT => 'Left',
+        self::CONTACT => 'Contact',
+
     ];
 
 }

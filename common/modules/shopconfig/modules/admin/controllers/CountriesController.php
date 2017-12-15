@@ -2,32 +2,17 @@
 
 namespace common\modules\shopconfig\modules\admin\controllers;
 
+use app\commons\BaseController;
 use Yii;
 use common\modules\shopconfig\models\Countries;
 use common\modules\shopconfig\models\CountriesSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * CountriesController implements the CRUD actions for Countries model.
  */
-class CountriesController extends Controller
+class CountriesController extends BaseController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * Lists all Countries models.

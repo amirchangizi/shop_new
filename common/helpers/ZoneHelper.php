@@ -33,6 +33,11 @@ class ZoneHelper  extends Component
         return ArrayHelper::map(Countries::find()->all() ,'countries_id' ,'countries_name') ;
     }
 
+    public static function getCountryById()
+    {
+        return ArrayHelper::map(Countries::find()->all() ,'countries_id' ,'countries_id') ;
+    }
+
     /***
      * @param Integer $countryId
      * @return array of zone

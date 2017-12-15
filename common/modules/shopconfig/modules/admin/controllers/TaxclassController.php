@@ -2,32 +2,17 @@
 
 namespace common\modules\shopconfig\modules\admin\controllers;
 
+use app\commons\BaseController;
 use Yii;
 use common\modules\shopconfig\models\TaxClass;
 use common\modules\shopconfig\models\TaxclassSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * TaxclassController implements the CRUD actions for TaxClass model.
  */
-class TaxclassController extends Controller
+class TaxclassController extends BaseController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * Lists all TaxClass models.

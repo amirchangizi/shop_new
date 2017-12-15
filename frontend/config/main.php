@@ -19,7 +19,7 @@ return [
             'csrfParam' => '_csrf-frontend',
         ],
         'user' => [
-            'identityClass' => 'app\models\Customers',
+            'identityClass' => 'common\modules\customermanagement\models\Customers',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],

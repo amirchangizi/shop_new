@@ -7,26 +7,11 @@ use common\modules\shopconfig\models\Setting;
 use common\modules\shopconfig\models\SettingSearch;
 use common\modules\shopconfig\models\SettingsForm;
 use Yii ;
-
-use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 
 class SettingsController extends BaseController
 {
 
-    public function behaviors()
-    {
-        return [
-
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
-        ];
-    }
 
     public function actionIndex()
     {

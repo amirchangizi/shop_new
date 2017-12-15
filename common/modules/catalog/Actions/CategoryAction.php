@@ -36,7 +36,7 @@ class CategoryAction extends Action
         if(!$model)
             throw new NotFoundHttpException('No product was found in this category') ;
 
-        return $this->controller->render('category' ,compact('model'));
+        return $this->controller->render('category' ,['model'=>$model , 'categoryId'=>$this->categoryId]);
 
     }
 }

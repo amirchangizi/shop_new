@@ -36,7 +36,7 @@ class Zones extends \yii\db\ActiveRecord
             [['zone_country_id', 'zone_code', 'zone_name'], 'required'],
             [['zone_country_id'], 'integer'],
 
-            ['zone_country_id', 'in', 'range' => ZoneHelper::getCountry()],
+            ['zone_country_id', 'in', 'range' => ZoneHelper::getCountryById()],
 
             [['zone_code'], 'string', 'max' => 32],
             [['zone_name'], 'string', 'max' => 255],
