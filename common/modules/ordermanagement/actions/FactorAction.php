@@ -25,12 +25,17 @@ class FactorAction extends Action
     public function run()
     {
 
-
+        $payment = $shipping = 0 ;
         $cookies = Yii::$app->request->cookies;
 
-        $payment = $cookies['payment']->value ;
-        $shipping = $cookies['shipping']->value ;
-        $address = $cookies['address']->value ;
+        if(isset($cookies['payment']))
+            $payment = $cookies['payment']->value ;
+
+        if(isset($cookies['shipping']))
+            $shipping = $cookies['shipping']->value ;
+
+        if(isset($cookies['address']))
+            $address = $cookies['address']->value ;
 
         $order = new productOrderFacade();
         $products = $order->getBasket() ;

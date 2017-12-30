@@ -57,7 +57,7 @@ class Customers extends ActiveRecord implements IdentityInterface
     {
         return [
             'default' => ['customer_name', 'customer_username', 'customer_password'  ,'customer_email','is_block'],
-            self::SCENARIO_REGISTER => ['customer_group_id', 'customer_name', 'customer_username', 'customer_password' ,'access_token' ,'customer_image' ,'customer_email' ,'phone' ,'mobile' ,'is_block', 'customer_parent_id','customer_max_credit' ,'is_agency' ,'user_id' ,'create_time' ,'update_time'],
+            self::SCENARIO_REGISTER => ['customer_name', 'customer_username', 'customer_password' ,'repeat_password' ,'customer_email', 'mobile' ],
             self::SCENARIO_EDITPROFILE => ['customer_group_id', 'customer_name', 'customer_username', 'customer_password' ,'access_token' ,'customer_image' ,'customer_email' ,'phone' ,'mobile' ,'is_block', 'customer_parent_id','customer_max_credit' ,'is_agency' ,'user_id' ,'create_time' ,'update_time'],
             self::SCENARIO_ADMINEDITPROFILE => ['customer_group_id', 'customer_name', 'customer_username', 'customer_password' ,'access_token' ,'customer_image' ,'customer_email' ,'phone' ,'mobile' ,'is_block', 'customer_parent_id','customer_max_credit' ,'is_agency' ,'user_id' ,'create_time' ,'update_time'],
             self::SCENARIO_SETPASSWORD => ['customer_group_id', 'customer_name', 'customer_username', 'customer_password' ,'access_token' ,'customer_image' ,'customer_email' ,'phone' ,'mobile' ,'is_block', 'customer_parent_id','customer_max_credit' ,'is_agency' ,'user_id' ,'create_time' ,'update_time'] ,
@@ -96,7 +96,7 @@ class Customers extends ActiveRecord implements IdentityInterface
         return [
             [['customer_group_id', 'is_block', 'user_id', 'customer_parent_id', 'create_time', 'update_time', 'customer_max_credit', 'is_agency'], 'integer'],
 
-            [['customer_name', 'customer_username', 'customer_password', 'customer_email','repeat_password','phone','customer_group_id'], 'required', 'on' => self::SCENARIO_REGISTER],
+            [['customer_name', 'customer_username', 'customer_password', 'customer_email','repeat_password','mobile'], 'required', 'on' => self::SCENARIO_REGISTER],
             [['customer_name', 'customer_username', 'customer_password', 'customer_email','repeat_password','phone','customer_group_id'], 'required', 'on' => self::SCENARIO_EDITPROFILE],
             [['customer_name', 'customer_username', 'customer_password', 'customer_email','repeat_password','phone','customer_group_id'], 'required', 'on' => self::SCENARIO_ADMINEDITPROFILE],
             [['customer_password','repeat_password'], 'required', 'on' => self::SCENARIO_SETPASSWORD],

@@ -1,135 +1,118 @@
 <?php
-use common\helpers\CategoryHelper;
-use common\helpers\ManufacturerHelper;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\widgets\ActiveForm;
+use yii\widgets\Breadcrumbs;
 
 ?>
+
 <div id="all">
-
-    <div id="content">
+    <!-- Page Breadcrumb -->
+    <div class="page-breadcrumb container-fluid no-padding">
         <div class="container">
+            <?php
+                echo  Breadcrumbs::widget([
+                    'itemTemplate' => "<li><i>{link}</i></li>\n", // template for all links
+                    'links' => [
+                        Yii::t('app' ,'Category'),
+                    ],
+                ]);
+            ?>
 
+        </div>
+    </div><!-- Page Breadcrumb /- -->
+    <div id="content">
+        <div class="row" style="margin-right: 0px !important; margin-left: 0px !important;">
             <div class="col-md-12">
-                <ul class="breadcrumb">
-                    <li><?=
-
-                        Html::a('', ['index'], ['class'=>'fa fa-home']) ?>
-                    </li>
-                    <li>دسته بندی</li>
-                </ul>
-            </div>
-
-            <div class="col-md-3">
-                <!-- *** MENUS AND FILTERS ***
-_________________________________________________________ -->
-                <div class="panel panel-default sidebar-menu">
-
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Categories</h3>
-                    </div>
-
-                    <div class="panel-body">
-                        <ul class="nav nav-pills nav-stacked category-menu">
-                            <li>
-                                <ul>
-                                    <?php
-                                        $list = CategoryHelper::getAllCategoryIdWithoutRoot() ;
-                                        if($list)
-                                            foreach ($list as $catId => $name):
-
-
-                                    ?>
-                                            <li><?= Html::a($name ,['product/category' ,'categoryId'=> $catId]) ?> </li>
-                                    <?php
-                                        endforeach;
-                                    ?>
-                                </ul>
-                            </li>
-                        </ul>
-
-                    </div>
-                </div>
-
-                <div class="panel panel-default sidebar-menu">
-
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Brands </h3>
-                    </div>
-
-                    <div class="panel-body">
-
-                        <?php
-                        $form = ActiveForm::begin([
-                            'action' => Yii::$app->urlManager->createUrl('product/brands'),
-                            'id'=>'brand-form',
-                        ]);
-                        ?>
-                            <div class="form-group">
-                        <?php
-                            $brandList = ManufacturerHelper::getAllManufacturer() ;
-                            $brandList = ArrayHelper::map($brandList ,'manufacturers_id' ,'manufacturers_name') ;
-
-                        ?>
-
-                                <div class="checkbox">
-                                    <label>
-                                        <?= Html::checkboxList('brands' ,null ,$brandList ) ?>
-                                    </label>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="wrapper-brand">
+                            <div class="logo-produ">
+                                <div class="logo-produ1">
+                                    <a href="#">
+                                        <?= Html::img('@web/img/Bugera-50x50.png')?>
+                                    </a>
+                                    <span><?= Yii::t('app' ,'Bugera') ?></span>
                                 </div>
-
-                        <?php
-                            echo Html::submitButton(Yii::t('app','Apply') , ['class' =>'btn btn-default btn-sm btn-primary'])
-                        ?>
+                                <div class="logo-produ1">
+                                    <a href="#">
+                                        <?= Html::img('@web/img/Bugera-50x50.png')?>
+                                    </a>
+                                    <span><?= Yii::t('app' ,'Bugera') ?></span>
+                                </div>
+                                <div class="logo-produ1">
+                                    <a href="#">
+                                        <?= Html::img('@web/img/Bugera-50x50.png')?>
+                                    </a>
+                                    <span><?= Yii::t('app' ,'Bugera') ?></span>
+                                </div>
+                                <div class="logo-produ1">
+                                    <a href="#">
+                                        <?= Html::img('@web/img/Bugera-50x50.png')?>
+                                    </a>
+                                    <span><?= Yii::t('app' ,'Bugera') ?></span>
+                                </div>
+                                <div class="logo-produ1">
+                                    <a href="#">
+                                        <?= Html::img('@web/img/Bugera-50x50.png')?>
+                                    </a>
+                                    <span><?= Yii::t('app' ,'Bugera') ?></span>
+                                </div>
+                                <div class="logo-produ1">
+                                    <a href="#">
+                                        <?= Html::img('@web/img/Bugera-50x50.png')?>
+                                    </a>
+                                    <span><?= Yii::t('app' ,'Bugera') ?></span>
+                                </div>
+                                <div class="logo-produ1">
+                                    <a href="#">
+                                        <?= Html::img('@web/img/Bugera-50x50.png')?>
+                                    </a>
+                                    <span><?= Yii::t('app' ,'Bugera') ?></span>
+                                </div>
+                                <div class="logo-produ1">
+                                    <a href="#">
+                                        <?= Html::img('@web/img/Bugera-50x50.png')?>
+                                    </a>
+                                    <span><?= Yii::t('app' ,'Bugera') ?></span>
+                                </div>
+                                <div class="logo-produ1">
+                                    <a href="#">
+                                        <?= Html::img('@web/img/Bugera-50x50.png')?>
+                                    </a>
+                                    <span><?= Yii::t('app' ,'Bugera') ?></span>
+                                </div>
                             </div>
-
-
-                        <?php  ActiveForm::end(); ?>
-
+                        </div>
                     </div>
                 </div>
-
-
-                <!-- *** MENUS AND FILTERS END *** -->
-
-                <div class="banner">
-                    <a href="#">
-                        <img src="img/img/category_img2.jpg" alt="sales 2014" class="img-responsive">
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-md-9">
-                <div class="box">
-                    <h1>دسته بندی</h1>
-
-                    <p class="lead"></p>
-                    <p class="text-muted">برای ارتباط مستقیم با ما به صفحه
-                        <?= Html::a('تماس با ما', ['contact'], ['class'=>'']) ?>
-                        مراجعه کنید
-                        .</p>
-                </div>
-
                 <div class="box info-bar">
+
                     <div class="row">
-                        <div class="col-sm-12 col-md-4 products-showing">
-                            نمایش <strong>12</strong> محصول از <strong>25</strong> محصول
-                        </div>
-
-                        <div class="col-sm-12 col-md-8  products-number-sort">
+                        <div class="col-sm-12 col-md-12  products-number-sort">
                             <div class="row">
-
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="products-number">
-                                            <strong><?= Yii::t('app' ,'show')?></strong>
-                                                <a href="<?= Url::to(['product/category','categoryId'=>$categoryId,'limit'=>12])?>" class="btn btn-default btn-sm btn-primary">12</a>
-                                                <a href="<?= Url::to(['product/category','categoryId'=>$categoryId,'limit'=>24])?>" class="btn btn-default btn-sm">24</a>
-                                                                        محصولات
+                                <form class="form-inline">
+                                    <div class="col-md-4 col-xs-4 col-sm-4">
+                                        <div class="products-sort-by">
+                                            <strong><?= Yii::t('app' ,'Sort by:') ?></strong>
+                                            <select name="sort-by" class="form-control">
+                                                <option><?= Yii::t('app' ,'Orice : Expensive > Cheap') ?></option>
+                                                <option><?= Yii::t('app' ,'Price : Cheap < Expensive') ?> </option>
+                                                <option><?= Yii::t('app' ,'Alphabet : A - Z') ?></option>
+                                                <option><?= Yii::t('app' ,'Alphabet : Z - A') ?></option>
+                                                <option><?= Yii::t('app' ,'Alphabet : Z - A') ?></option>
+                                                <option><?= Yii::t('app' ,'Best Selling') ?></option>
+                                                <option><?= Yii::t('app' ,'Most Viewed') ?></option>
+                                            </select>
                                         </div>
                                     </div>
-
+                                </form>
+                                <div class="col-md-2 col-md-offset-6">
+                                    <div class="buttons-section">
+                                        <span class="compare-count">2</span>
+                                        <div class="buttons-bg" style="margin-right: 15px;">
+                                            <a class="btn btn-primary btn-lg pull-right" href="<?= Yii::$app->urlManager->createUrl(['/product/compare']) ?>" style="padding: 10px 38px;"><?= Yii::t('app' ,'Compare') ?></a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -137,68 +120,78 @@ _________________________________________________________ -->
 
                 <div class="row products">
 
-
                     <?php
                         foreach ($model as $product):
                     ?>
-
-
-
-                        <div class="col-md-4 col-sm-6">
-                            <div class="product">
-                                <div class="flip-container">
-                                    <div class="flipper">
-                                        <div class="front">
-                                            <a href="<?= Yii::$app->urlManager->createUrl(['product/view' ,'id'=>$product->product_id ])?>">
-                                                <?= Html::img('@web/img/product/'.$product->image,['class'=>'img-responsive category-img'])  ?>
-                                            </a>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="category-product">
+                                    <figure class="snip1312" style="overflow: hidden;height:195px;">
+                                        <div class="image"><a href="<?= Yii::$app->urlManager->createUrl(['/product/view' ,'id' =>$product->product_id]) ?>"><?= Html::img('@web/img/products/'.$product->image ,['class' => 'img-responsive']) ?></a></div>
+                                    </figure>
+                                    <div class="col-xs-12 icons-category">
+                                        <div class="col-xs-3 icon-place">
+                                            <?= Html::img('@web/img/head1.png',['alt' => 'something'],['class' => 'icon-img']) ?>
+                                        </div>
+                                        <div class="col-xs-3 icon-place" >
+                                            <?= Html::img('@web/img/head1.png',['alt' => 'something'],['class' => 'icon-img']) ?>
+                                        </div>
+                                        <div class="col-xs-3 icon-place" >
+                                            <?= Html::img('@web/img/head1.png',['alt' => 'something'],['class' => 'icon-img']) ?>
+                                        </div>
+                                        <div class="col-xs-3 icon-place">
+                                            <?= Html::img('@web/img/head1.png',['alt' => 'something'],['class' => 'icon-img']) ?>
+                                        </div>
+                                        <div class="col-xs-3 icon-place">
+                                            <?= Html::img('@web/img/head1.png',['alt' => 'something'],['class' => 'icon-img']) ?>
+                                        </div>
+                                        <div class="col-xs-3 icon-place">
+                                            <?= Html::img('@web/img/head1.png',['alt' => 'something'],['class' => 'icon-img']) ?>
+                                        </div>
+                                        <div class="col-xs-3 icon-place">
+                                            <?= Html::img('@web/img/head1.png',['alt' => 'something'],['class' => 'icon-img']) ?>
+                                        </div>
+                                        <div class="col-xs-3 icon-place">
+                                            <?= Html::img('@web/img/head1.png',['alt' => 'something'],['class' => 'icon-img']) ?>
                                         </div>
                                     </div>
-                                </div>
-                                <a href="<?= Yii::$app->urlManager->createUrl(['product/view' ,'id'=>$product->product_id ])?>" class="invisible">
-                                    <img src="img/540-320.jpg" alt="" class="img-responsive" style="height: 180px;">
-                                </a>
-                                <div class="text">
-                                    <h3><a href="<?= Yii::$app->urlManager->createUrl(['product/view' ,'id'=>$product->product_id ])?>"><?= $product->name ?></a></h3>
-                                    <div class="col-sm-12"  style="margin-bottom: 15px;margin-top: 15px;">
-                                        <div class="col-sm-1">
-                                            <i class="fa fa-play-circle" aria-hidden="true" title="some thing"></i>
-                                        </div>
-                                        <div class="col-sm-1">
-                                            <i class="fa fa-microphone" aria-hidden="true" title="some thing"></i>
-                                        </div>
-                                        <div class="col-sm-1">
-                                            <i class="fa fa-bluetooth-b" aria-hidden="true" title="some thing"></i>
-                                        </div>
-                                        <div class="col-sm-1">
-                                            <i class="fa fa fa-wifi" aria-hidden="true" title="some thing"></i>
-                                        </div>
-                                        <div class="col-sm-1">
-                                            <i class="fa fa-android" aria-hidden="true" title="some thing"></i>
-                                        </div>
-                                        <div class="col-sm-1">
-                                            <i class="fa fa-mobile" aria-hidden="true" title="some thing"></i>
-                                        </div>
+                                    <div class="title">
+                                        <h3><a href="<?= Yii::$app->urlManager->createUrl(['/product/view' ,'id' =>$product->product_id]) ?>"><?= $product->name ?></a></h3>
+                                        <p class="price"><a href="<?= Yii::$app->urlManager->createUrl(['/product/view' ,'id' =>$product->product_id]) ?>"><?= number_format($product->price,2) ?></a></p>
                                     </div>
-                                    <p class="price"><?= $product->price ?></p>
-                                    <p class="buttons">
-                                        <a href="<?= Yii::$app->urlManager->createUrl(['product/view' ,'id'=>$product->product_id ])?>" class="btn btn-default">View detail</a>
-                                        <a href="<?= Yii::$app->urlManager->createUrl(['order/add' ,'id'=>$product->product_id ])?>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </p>
+                                    <!-- /.text -->
+                                    <div class="compare">
+                                        <div class="compare-text"><i class="fa fa-balance-scale" aria-hidden="true"></i><?= Html::a(Yii::t('app' ,' Add To Compare') ,['/product/addcompare' , 'productId'=>$product->product_id])  ?></div>
+                                    </div>
                                 </div>
-                                <!-- /.text -->
+                                <!-- /.product -->
                             </div>
-                            <!-- /.product -->
-                        </div>
-                    <?php
-                        endforeach;
-                    ?>
 
+                    <?php endforeach; ?>
+
+
+
+
+
+
+
+
+
+
+
+
+                    <!-- /.col-md-9 -->
                 </div>
                 <!-- /.container -->
             </div>
             <!-- /#content -->
         </div>
         <!-- /#all -->
+        <script type="text/javascript">
+            $(".hover").mouseleave(
+                function () {
+                    $(this).removeClass("hover");
+                }
+            );
+        </script>
 
-            
+

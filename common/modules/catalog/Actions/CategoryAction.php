@@ -17,12 +17,11 @@ class CategoryAction extends Action
 {
     public $categoryId ;
 
-
     public function run()
     {
 
         if(!$this->categoryId = Yii::$app->request->get('categoryId'))
-            throw new NotFoundHttpException('No product was found in this category') ;
+            throw new NotFoundHttpException(Yii::t('app' ,'No product was found in this category')) ;
 
         $limit = 12 ;
         if(Yii::$app->request->get('limit'))
@@ -30,11 +29,10 @@ class CategoryAction extends Action
 
         $sort = null;
 
-
         $model = ProductHelper::getProductByCategory($this->categoryId ,$limit ,$sort);
 
         if(!$model)
-            throw new NotFoundHttpException('No product was found in this category') ;
+            throw new NotFoundHttpException(Yii::t('app' ,'No product was found in this category')) ;
 
         return $this->controller->render('category' ,['model'=>$model , 'categoryId'=>$this->categoryId]);
 

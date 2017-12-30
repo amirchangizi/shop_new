@@ -1,6 +1,8 @@
 <?php
 namespace frontend\controllers;
 
+use common\helpers\LanguageHelper;
+use frontend\commons\BaseController;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -16,7 +18,7 @@ use frontend\models\ContactForm;
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends BaseController
 {
     /**
      * @inheritdoc
@@ -59,10 +61,14 @@ class SiteController extends Controller
                 'class' => 'yii\web\ErrorAction',
             ],
             'login' => [
-                'class' => 'common\modules\customermanagement\actions\LvsRAction',
+                //'class' => 'common\modules\customermanagement\actions\LvsRAction',
+                'class' => 'common\modules\customermanagement\actions\LoginAction',
             ],
             'logout' => [
                 'class' => 'common\modules\customermanagement\actions\LogoutAction',
+            ],
+            'register' => [
+                'class' => 'common\modules\customermanagement\actions\RegistrationAction',
             ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
@@ -78,12 +84,35 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+//        echo Yii::$app->user->id ;
+//        exit;
         return $this->render('index');
     }
 
     public function actionCheckout()
     {
-        return $this->render('checkout');
+        return $this->render('product');
+    }
+
+    public function actionLang($lang)
+    {
+        $cookies = Yii::$app->request->cookies;
+
+        $language = LanguageHelper::getByValue() ;
+
+        if(isset($language[$lang]))
+        {
+            unset($language) ;
+
+            $cookie = new \yii\web\Cookie([
+                'name' => 'language',
+                'value' => $lang,
+            ]) ;
+
+            Yii::$app->getResponse()->getCookies()->add($cookie);
+        }
+
+        return $this->redirect(Yii::$app->request->referrer) ;
     }
 
     /**
@@ -109,22 +138,7 @@ class SiteController extends Controller
         }
     }
 
-    /**
-     resturan controller
-     */
-   
-    public function actionCart()
-    {
-        return $this->render('cart');
-    }
-    public function actionAccount()
-    {
-        return $this->render('account');
-    }
-    public function actionFactor()
-    {
-        return $this->render('factor');
-    }
+
    
    
 

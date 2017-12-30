@@ -1,70 +1,57 @@
 <?php
-
-/* @var $this \yii\web\View */
-/* @var $content string */
-
 use common\helpers\ZoneHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
+use yii\widgets\Breadcrumbs;
 
+$this->title =   Yii::t('app' ,'Check out');
 ?>
+<main>
+		<!-- Page Breadcrumb -->
+		<div class="page-breadcrumb container-fluid no-padding">
+			<div class="container">
+                <?php
+                echo  Breadcrumbs::widget([
+                    'itemTemplate' => "<li><i>{link}</i></li>\n", // template for all links
 
-<div id="content">
-    <div class="container">
+                    'links' => [
+                        [
+                            'label' => Yii::t('app' ,'Shopping cart'),
+                            'url' => ['/order/cart'],
+                            'template' => "<li><b>{link}</b></li>\n", // template for this link only
+                        ],
+                        Yii::t('app' ,'Check out'),
+                    ],
+                ]);
+                ?>
+			</div>
+		</div><!-- Page Breadcrumb /- -->
+		
+		<div class="container shop_checkout-section" style="margin-bottom: 20px;">
+			<div class="padding-100"></div>
+            <?php
+            $form = ActiveForm::begin([
+                'id'=>'address-form',
+            ]);
+            ?>
+				<div class="col-md-8">
+					<h3 class="blocktitle"><?= Yii::t('app' ,'Enter Your address.') ?></h3>
+					<div class="row">
+						<div class="col-md-6 col-sm-6 col-xs-6">
+							<div class="form-group">
+								<label><?= Yii::t('app' ,'Postal code') ?></label>
+                                <?= $form->field($model, 'postalcode')->textInput(['id'=> 'input_name' , 'class'=>'form-control','maxlength' => true])->label(false) ?>
 
-        <div class="col-md-12">
-            <ul class="breadcrumb">
-                <li><?= Html::a('', ['index'], ['class'=>'fa fa-home']) ?>
-                </li>
-                <li><?= Html::a('سبد خرید', ['basket'], ['class'=>'']) ?></li>
-                <li>اطلاعات تحویل محصول</li>
-            </ul>
-        </div>
-
-        <div class="col-md-9" id="checkout">
-
-            <div class="box pull-right">
-
-                    <h2>اطلاعات تحویل محصول</h2><br>
-                    <ul class="nav nav-pills nav-justified">
-                        <li class="active">
-                            <?= Html::a('<span class="fa fa-map-marker"></span> اطلاعات شخصی', ['info']) ?>
-                        </li>
-                        <li class="disabled">
-                            <?= Html::a('<span class="fa fa-truck"></span> نوع تحویل', ['']) ?>
-                        </li>
-                        <li class="disabled">
-                            <?= Html::a('<span class="fa fa-money"></span> نوع پرداخت', ['']) ?>
-                        </li>
-                        <li class="disabled">
-                            <?= Html::a('<span class="fa fa-eye"></span> نمایش محصولات انتخابی شما', ['']) ?>
-                        </li>
-                    </ul>
-
-
-
-                    <!-- /.row -->
-                    <?php
-                        $form = ActiveForm::begin([
-                            'id'=>'address-form',
-                        ]);
-                    ?>
-                    <div class="row">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <?= $form->field($model, 'postalcode')->textInput([ 'class'=>'form-control','maxlength' => true]) ?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6 col-md-3">
-                            <div class="form-group">
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-6">
+							<div class="form-group">
+								<label><?= Yii::t('app' ,'state') ?></label>
                                 <?= $form->field($model, 'state')->dropDownList( ZoneHelper::getCountry(),[
-                                                                                                                'class'=>'form-control',
-                                                                                                                'maxlength' => true,
-                                                                                                                'onChange' =>'
+                                    'class'=>'form-control',
+                                    'maxlength' => true,
+                                    'onChange' =>'
                                                                                                                         $.get( "'.Url::toRoute('/order/zone').'", { id: $(this).val() } )
                                                                                                                             .success(function( data ) {
                                                                                                                                     $("#city").empty();
@@ -76,59 +63,44 @@ use yii\widgets\ActiveForm;
                                                                                                                             }
                                                                                                                         );
                                                                                                                     '
-                                                                                                            ]) ?>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3">
-                            <div class="form-group">
-                                <?= $form->field($model, 'city')->dropDownList( [],[ 'class'=>'form-control','maxlength' => true ,'id'=>'city']) ?>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3">
-                            <div class="form-group">
-                                <?= $form->field($model, 'address')->textInput([ 'class'=>'form-control','maxlength' => true]) ?>
-                            </div>
-                        </div>
+                                ])->label(false) ?>
+							</div>
+						</div>
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="form-group">
+								<label><?= Yii::t('app' ,'city') ?></label>
+                                <?= $form->field($model, 'city')->dropDownList( [],[ 'class'=>'form-control','maxlength' => true ,'id'=>'city'])->label(false) ?>
+							</div>
+						</div>
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="form-group">
+								<label><?= Yii::t('app' ,'address') ?></label>
+                                <?= $form->field($model, 'address')->textInput([ 'class'=>'form-control','maxlength' => true])->label(false) ?>
+							</div>
+						</div>
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="form-group">
+								<label><?= Yii::t('app' ,'mobil') ?></label>
+                                <?= $form->field($model, 'mobil')->textInput([ 'class'=>'form-control','maxlength' => true])->label(false) ?>
+							</div>
+						</div>
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="form-group">
+							<label><?= Yii::t('app' ,'phon') ?></label>
+                                <?= $form->field($model, 'phon')->textInput([ 'class'=>'form-control','maxlength' => true])->label(false) ?>
+							</div>
+						</div>
 
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <?= $form->field($model, 'mobil')->textInput([ 'class'=>'form-control','maxlength' => true]) ?>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <?= $form->field($model, 'phon')->textInput([ 'class'=>'form-control','maxlength' => true]) ?>
-                            </div>
-                        </div>
+                    <?= Html::input('submit','Next',Yii::t('app','Send & Next'), ['id' =>'btn_submit' ,'class'=>'btn btn-success']) ?>
+					</div>
+                    <?php  ActiveForm::end(); ?>
+				</div>
+				<div class="col-md-4">
 
+				</div>
+				<!-- Order Payment Block -->
 
-                    </div>
-                    <div class="box-footer">
-                        <div class="pull-right">
-                            <?= Html::a('<span class=" fa fa-chevron-right"></span>  بازگشت به سبد خرید', ['basket'], ['class'=>'btn btn-default']) ?>
-                        </div>
-                        <div class="pull-left">
-                            <?= Html::submitButton('<span class=" fa fa-chevron-left"></span>  ادامه', ['class'=>'btn btn-primary']) ?>
-                        </div>
-                    </div>
-
-                <?php  ActiveForm::end(); ?>
-
-            </div>
-            <!-- /.box -->
-
-
-        </div>
-        <!-- /.col-md-9 -->
-
-        <div class="col-md-3">
-
-
-
-        </div>
-        <!-- /.col-md-3 -->
-
-    </div>
-    <!-- /.container -->
-</div>
-
+			<div class="padding-100"></div>
+		</div>
+	</main>
+     

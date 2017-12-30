@@ -3,6 +3,7 @@ namespace frontend\controllers;
 
 
 use common\helpers\ZoneHelper;
+use frontend\commons\BaseController;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\helpers\Html;
@@ -19,7 +20,7 @@ use frontend\models\ContactForm;
 /**
  * Site controller
  */
-class OrderController extends Controller
+class OrderController extends BaseController
 {
 
     public function actions()

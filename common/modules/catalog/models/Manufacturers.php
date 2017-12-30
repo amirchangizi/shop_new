@@ -83,7 +83,7 @@ class Manufacturers extends \yii\db\ActiveRecord
     public function upload()
     {
         if (!$this->imageFile && !$this->isNewRecord) {
-//            $this->imageFile = $this->oldAttributes['imageFile'];
+            $this->manufacturers_image = $this->oldAttributes['manufacturers_image'];
             return true;
         }
         if ($this->imageFile) {

@@ -20,13 +20,13 @@ class ProductViewAction extends Action
     {
 
         if(!$id = Yii::$app->request->get('id'))
-            throw new NotFoundHttpException('This product was found .') ;
+            throw new NotFoundHttpException(Yii::t('app','This product was found .')) ;
 
 
         $model = ProductHelper::getProductById($id);
 
         if(!$model)
-            throw new NotFoundHttpException('This product was found .') ;
+            throw new NotFoundHttpException(Yii::t('app','This product was found .')) ;
 
         return $this->controller->render('view' ,['model'=>$model  ,'id'=>$id]);
 

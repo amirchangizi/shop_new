@@ -1,101 +1,92 @@
 <?php
-
-/* @var $this \yii\web\View */
-/* @var $content string */
-
-
+$this->title = Yii::t('app' ,'Login');
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
 use yii\widgets\ActiveForm;
 use yii\widgets\Breadcrumbs;
-use app\assets\AppAsset;
 
 ?>
+<main>
+		<!-- Page Breadcrumb -->
+		<div class="page-breadcrumb container-fluid no-padding">
+			<div class="container">
+                <?php
 
-    <div id="content">
-            <div class="container">
+                echo  Breadcrumbs::widget([
+                    'itemTemplate' => "<li><i>{link}</i></li>\n", // template for all links
+                    'links' => [
+                        Yii::t('app' ,'login'),
+                    ],
+                ]);
 
-                <div class="col-md-12">
-                    <ul class="breadcrumb">
-                        <li><?= Html::a('', ['index'], ['class'=>'fa fa-home']) ?>
-                        </li>
-                        <li>ثبت نام  / ورود</li>
-                    </ul>
-
-                </div>
-
-                <div class="col-md-6">
-                    <div class="box">
-                        <h1>ثبت نام</h1>
-
-                        <p class="text-muted">برای ارتباط مستقیم با ما به صفحه 
-                            <?= Html::a('تماس با ما', ['contact'], ['class'=>'']) ?>
-                            مراجعه کنید
-                            .</p>
-                        <hr>
-
+                ?>
+			</div>
+		</div><!-- Page Breadcrumb /- -->
+			
+		<!-- Shop MyAccount Section -->
+		<div class="container shopmy-account-section">
+			<div class="padding-100"></div>
+			<div class="row">
+				<div class="col-md-6 col-sm-6">
+					<div class="accounts-box">
+						<h3>I'm a returning customer</h3>
                         <?php
-                            $form = ActiveForm::begin([
-                                'id'=>'signup-form',
-                            ]);
+                        $form = ActiveForm::begin([
+                            'id'=>'login-form',
+                            'options' => ['class' => 'accountsform'],
+
+                        ]);
                         ?>
+							<div class="row">
+								<div class="col-md-12 col-sm-12 col-xs-6">
+									<div class="form-group">
+										<label><?= Yii::t('app' ,'Username') ?> </label>
+                                        <?= $form->field($model, 'username')->textInput([ 'class'=>'form-control', 'id' => "input_name",'maxlength' => true])->label(false) ?>
+									</div>
+								</div>
+								<div class="col-md-12 col-sm-12 col-xs-6">
+									<div class="form-group">
+										<label><?= Yii::t('app' ,'password') ?> </label>
+										<a href="#" title="Forgot your password?"><?= Yii::t('app' ,'Forgot your password?') ?> </a>
+                                        <?= $form->field($model, 'password')->passwordInput(['class'=>'form-control', 'id' => "input_password" ,'maxlength' => true])->label(false) ?>
+									</div>
+								</div>
+								<div class="col-md-12 col-sm-12 col-xs-12">
+									<div class="form-group">
+                                        <?= Html::input('submit',Yii::t('app','Login'),"Login", ['id' =>'btn_submit']) ?>
 
-                            <div class="form-group">
-                                <label for="name">نام </label>
-                                <?= $form->field($signupModel, 'customer_name')->textInput([ 'class'=>'form-control','maxlength' => true])->label(false) ?>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="name">نام کاربری</label>
-                                <?= $form->field($signupModel, 'customer_username')->textInput([ 'class'=>'form-control','maxlength' => true])->label(false) ?>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="password">رمز عبور</label>
-                                <?= $form->field($signupModel, 'customer_password')->passwordInput([ 'class'=>'form-control','maxlength' => true])->label(false) ?>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="email">پست الکترونیک</label>
-                                <?= $form->field($signupModel, 'customer_email')->textInput([ 'class'=>'form-control','maxlength' => true])->label(false) ?>
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-user-md"></i>عضویت</button>
-                            </div>
+									</div>
+								</div>
+							</div>
                         <?php  ActiveForm::end(); ?>
-                    </div>
-                </div>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-6">
+					<div class="accounts-box layout2">
+						<h3><?= Yii::t('app','Register an account') ?></h3>
+						<form class="accountsform">
+                                                    <div class="form-group">
+                                                        <label>
+                                                            <?= Yii::t('app','CREATE NEW ACCOUNT :') ?>
+                                                            <br>
+                                                            <?= Yii::t('app','With a NI user account, you can shop online, register and activate products, download updates, and take advantage of other protected services.') ?>
+                                                        </label>
+                                                    </div>
+							<div class="row">
+								<div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="buttons-section">
+                                        <div class="buttons-bg">
+                                            <?= Html::a('Register', ['/site/register'], ['class'=>'btn btn-primary btn-lg pull-right']) ?>
 
-                <div class="col-md-6">
-                    <div class="box">
-                        <h1>ورود</h1>
+                                        </div>
+                                    </div>
+									
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="padding-100"></div>
+		</div><!-- Shop MyAccount Section /- -->
+	</main>
 
-                       
-                        <hr>
-
-
-                            <?php
-                                $form = ActiveForm::begin([
-                                    'id'=>'login-form',
-                                ]);
-                            ?>
-                            <div class="form-group">
-                                <?= $form->field($model, 'username')->textInput([ 'class'=>'form-control','maxlength' => true])->label(false) ?>
-                            </div>
-                            <div class="form-group">
-                                <?= $form->field($model, 'password')->passwordInput(['class'=>'form-control','maxlength' => true])->label(false) ?>
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i>ورود</button>
-                            </div>
-                        <?php  ActiveForm::end(); ?>
-                    </div>
-                </div>
-
-
-            </div>
-            <!-- /.container -->
-        </div>
-    
-    

@@ -14,7 +14,7 @@ use common\models\enums\ConfirmStatus;
         <label class="col-sm-2"><?= $labels['model'] ?></label>
         <div class="col-sm-4 "><?= $form->field($model, 'model')->textInput( ['maxlength' => true])->label(false) ?></div>
         <label class="col-sm-2"><?= $labels['image'] ?></label>
-        <div class="col-sm-4 "><?= $form->field($model, 'image')->fileInput()->label(false) ?></div>
+        <div class="col-sm-4 "><?= $form->field($model, 'imageFile')->fileInput()->label(false) ?></div>
     </div>
 
 </div>

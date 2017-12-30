@@ -38,14 +38,9 @@ class LoginAction extends Action
             }
 
             $model = new LoginForm();
-//
+
             if ($model->load(Yii::$app->request->post()) && $model->login() ) {
-
                 return $this->controller->goBack();
-            } else {
-
-                return $this->controller->redirect(Yii::$app->request->referrer) ;
-
             }
 
             if($this->active_partial)

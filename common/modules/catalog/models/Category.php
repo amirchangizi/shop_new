@@ -79,7 +79,7 @@ class Category extends \yii\db\ActiveRecord
             [['description'], 'string'],
 
             ['parent_id', 'in', 'range' => CategoryHelper::getAllCategoryId()],
-            [['name','categoryName','meta_title','meta_description','meta_keyword','description'], 'match', 'pattern' => '/^[A-Za-z0-9_~\-@\\^\(\)]+$/'] ,
+            //[['name','categoryName','meta_title','meta_description','meta_keyword','description'], 'match', 'pattern' => '/^[A-Za-z0-9_~\-@\\^\(\)]+$/'] ,
 
             [['name','categoryName'], 'string', 'max' => 150],
             [['hits'], 'string', 'max' => 200],

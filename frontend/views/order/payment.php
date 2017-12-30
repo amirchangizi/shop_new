@@ -1,107 +1,100 @@
 <?php
-
-/* @var $this \yii\web\View */
-/* @var $content string */
-
-
+use common\helpers\ZoneHelper;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
+use yii\widgets\Breadcrumbs;
 
+$this->title =   Yii::t('app' ,'Check out');
 ?>
+<main>
+    <!-- Page Breadcrumb -->
+    <div class="page-breadcrumb container-fluid no-padding">
+        <div class="container">
+            <?php
+            echo  Breadcrumbs::widget([
+                'itemTemplate' => "<li><i>{link}</i></li>\n", // template for all links
 
-<div id="content">
-            <div class="container">
+                'links' => [
+                    [
+                        'label' => Yii::t('app' ,'Shopping cart'),
+                        'url' => ['/order/cart'],
+                        'template' => "<li><b>{link}</b></li>\n", // template for this link only
+                    ],
+                    Yii::t('app' ,'Check out'),
+                ],
+            ]);
+            ?>
+        </div>
+    </div><!-- Page Breadcrumb /- -->
 
-                <div class="col-md-12">
-                    <ul class="breadcrumb">
-                        <li><?= Html::a('', ['index'], ['class'=>'fa fa-home']) ?>
-                        </li>
-                        <li><?= Html::a('سبد خرید', ['basket'], ['class'=>'']) ?></li>
-                        <li>اطلاعات تحویل محصول</li>
-                    </ul>
-                </div>
+    <div class="container shop_checkout-section" style="margin-bottom: 20px;">
+        <div class="padding-100"></div>
+        <?php
+        $form = ActiveForm::begin([
+            'id'=>'address-form',
+        ]);
+        ?>
+        <div class="col-md-8">
 
-                <div class="col-md-9" id="checkout">
 
-                    <div class="box pull-right">
+            <div class="col-md-12 box pull-right">
 
-                            <h2>اطلاعات تحویل محصول</h2><br>
-                            <ul class="nav nav-pills nav-justified">
-                                <li class="">
-                                    <?= Html::a('<span class="fa fa-map-marker"></span> اطلاعات شخصی', ['info']) ?>
-                                </li>
-                                <li class="">
-                                    <?= Html::a('<span class="fa fa-truck"></span> نوع تحویل', ['delivery']) ?>
-                                </li>
-                                <li class="active">
-                                    <?= Html::a('<span class="fa fa-money"></span> نوع پرداخت', ['payment']) ?>
-                                </li>
-                                <li class="disabled">
-                                    <?= Html::a('<span class="fa fa-eye"></span> نمایش فاکتور', ['review']) ?>
-                                </li>
-                            </ul>
-                            <div class="content">
-                                <div class="row">
-                                    <?php
-                                        $form = ActiveForm::begin([
-                                            'id'=>'payment-form',
-                                        ]);
+                <h2> <span class="fa fa-money"></span>  <?= Yii::t('app' ,'Payment Method') ?>  </h2><br>
 
-                                        foreach ($paymentMethod as $payment) :
-                                    ?>
 
-                                    <div class="col-sm-6">
-                                        <div class="box payment-method">
+                <div class="content">
+                    <div class="row">
+                        <?php
+                        $form = ActiveForm::begin([
+                            'id'=>'payment-form',
+                        ]);
 
-                                            <h4><?= $payment ?></h4>
+                        foreach ($paymentMethod as $payment) :
+                            ?>
 
-                                            <div class="box-footer text-center">
-                                                <input type="radio" name="payment" value="<?= $payment ?>">
-                                            </div>
+                            <div class="col-sm-6">
+                                <div class="box payment-method">
 
-                                        </div>
+                                    <h4><?= $payment ?></h4>
+
+                                    <div class="box-footer text-center">
+                                        <input type="radio" name="payment" value="<?= $payment ?>">
                                     </div>
 
-                                    <?php
-                                        endforeach;
-                                    ?>
                                 </div>
-
-                                <div class="box-footer">
-                                    <div class="pull-right">
-                                        <?= Html::a('<span class=" fa fa-chevron-right"></span>  بازگشت ', ['delivery'], ['class'=>'btn btn-default']) ?>
-                                    </div>
-                                    <div class="pull-left">
-                                        <?= Html::submitButton('<span class=" fa fa-chevron-left"></span>  ادامه', ['class'=>'btn btn-primary']) ?>
-                                    </div>
-                                </div>
-
-                                <?php
-                                    ActiveForm::end();
-                                ?>
-
-
-                                <!-- /.row -->
-
                             </div>
-                            <!-- /.content -->
 
-
-
-                        </form>
+                            <?php
+                        endforeach;
+                        ?>
                     </div>
-                    <!-- /.box -->
 
+                    <div class="box-footer">
+                        <div class="pull-right">
+                            <?= Html::a('<span class=" fa fa-chevron-right"></span>  بازگشت ', ['delivery'], ['class'=>'btn btn-default']) ?>
+                        </div>
+                        <div class="pull-left">
+                            <?= Html::submitButton('<span class=" fa fa-chevron-left"></span>  ادامه', ['class'=>'btn btn-primary']) ?>
+                        </div>
+                    </div>
+
+                    <?php
+                    ActiveForm::end();
+                    ?>
+                    <!-- /.row -->
 
                 </div>
-                <!-- /.col-md-9 -->
-
-                <div class="col-md-3">
 
 
-                </div>
-                <!-- /.col-md-3 -->
+
 
             </div>
-            <!-- /.container -->
+            <div class="col-md-4">
+
+            </div>
+            <!-- Order Payment Block -->
+
+            <div class="padding-100"></div>
         </div>
+</main>

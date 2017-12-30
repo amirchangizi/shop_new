@@ -86,12 +86,12 @@ $labels = $model->attributeLabels();
                                 'headerOptions' => [],
                                 'options' => ['id' => 'related'],
                             ],
-                            [
+                         /*   [
                                 'label' => Yii::t('app','discount'),
                                 'content' => Yii::$app->controller->renderPartial('_discount',compact('model' ,'discountModel' , 'form', 'labels')) ,
                                 'headerOptions' => [],
                                 'options' => ['id' => 'discount'],
-                            ],
+                            ],*/
                             /*[
                                 'label' => Yii::t('app','images'),
                                 'content' => Yii::$app->controller->renderPartial('_images',compact('model' ,'imagesModel' , 'form', 'labels')) ,

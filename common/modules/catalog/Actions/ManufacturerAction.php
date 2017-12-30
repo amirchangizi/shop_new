@@ -20,12 +20,12 @@ class ManufacturerAction extends Action
     public function run()
     {
         if(!$this->manufacturerId = Yii::$app->request->get('manufacturerId'))
-            throw new NotFoundHttpException('Invalid notification id') ;
+            throw new NotFoundHttpException(Yii::t('app' ,'Invalid manufacturer id')) ;
 
         $model = ManufacturerHelper::getManufacturerById($this->manufacturerId);
 
         if(!$model)
-            throw new NotFoundHttpException('Invalid information') ;
+            throw new NotFoundHttpException(Yii::t('app' ,'Invalid manufacturer')) ;
 
         return $this->controller->render('manufacturer' ,compact('model'));
     }

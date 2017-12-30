@@ -80,6 +80,17 @@ class productOrderFacade extends Component
         return 0 ;
     }
 
+    public static function countOfBasket()
+    {
+        $cookies = Yii::$app->request->cookies;
+        $cookieInfo = [] ;
+        if (isset($cookies['basket']))
+            $cookieInfo = json_decode($cookies['basket']->value , true) ;
+
+        return count($cookieInfo) ;
+
+    }
+
     private function addToCart($countOfProduct)
     {
         $cookies = Yii::$app->request->cookies;

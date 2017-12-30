@@ -19,12 +19,12 @@ class InformationAction extends Action
     public function run()
     {
         if(!$this->infoId = Yii::$app->request->get('infoId'))
-            throw new NotFoundHttpException('Invalid notification id') ;
+            throw new NotFoundHttpException(Yii::t('app' ,'Invalid notification id')) ;
 
         $model = InformationHelper::getInformation($this->infoId);
 
         if(!$model)
-            throw new NotFoundHttpException('Invalid information') ;
+            throw new NotFoundHttpException(Yii::t('app' ,'Invalid information')) ;
 
         return $this->controller->render('information' ,compact('model'));
     }

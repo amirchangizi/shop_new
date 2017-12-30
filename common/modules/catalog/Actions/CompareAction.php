@@ -8,7 +8,7 @@
 
 namespace common\modules\catalog\actions;
 
-use common\helpers\ManufacturerHelper;
+use common\helpers\ProductHelper;
 use Yii ;
 use yii\base\Action ;
 use yii\web\NotFoundHttpException;
@@ -19,7 +19,20 @@ class CompareAction extends Action
 
     public function run()
     {
+        $cookies = Yii::$app->request->cookies;
+        $cookieInfo = [] ;
+        if (isset($cookies['compare'])){
+            $cookieInfo = json_decode($cookies['compare']->value , true) ;
+        }
 
-        return $this->controller->render('information' ,compact('model'));
+        if(count($cookieInfo) <= 0 )
+            throw new NotFoundHttpException(Yii::t('app' ,'There is no product for comparison'));
+
+        foreach ($cookieInfo as $id)
+        {
+            $compare[$id] = ProductHelper::getProductById($id) ;
+        }
+
+        return $this->controller->render('compare' ,compact('compare'));
     }
 }

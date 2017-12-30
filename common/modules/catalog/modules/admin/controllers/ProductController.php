@@ -3,7 +3,6 @@
 namespace common\modules\catalog\modules\admin\controllers;
 
 use app\commons\BaseController;
-use common\helpers\JdfHelper;
 use common\modules\catalog\models\ProductDiscount;
 use common\modules\catalog\models\ProductImage;
 use common\modules\catalog\models\ProductRelated;
@@ -13,6 +12,7 @@ use common\modules\catalog\models\Product;
 use common\modules\catalog\models\ProductSearch;
 use yii\base\Model;
 use yii\web\NotFoundHttpException;
+use yii\web\UploadedFile;
 
 /**
  * ProductController implements the CRUD actions for Product model.
@@ -69,9 +69,12 @@ class ProductController extends BaseController
             $valid = $model->validate();
             $valid = Model::validateMultiple($discountModel) && $valid;
 
+
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+
             if($model->save())
             {
-                $model->saveDiscount($discountModel[0] , $post[$discountModel[0]->formName()],$model->product_id) ;
+                //$model->saveDiscount($discountModel[0] , $post[$discountModel[0]->formName()],$model->product_id) ;
 
                 $model->saveRelated($relatedModel , $post[$relatedModel->formName()] ,$model->product_id) ;
                 $model->saveCategory($categoryModel ,$post[$categoryModel->formName()] ,$model->product_id) ;
